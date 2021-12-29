@@ -1,0 +1,18 @@
+Con respecto a los filtros
+	La búsqueda se hará por medio de la interfaz, a partir del listado de objetos que fue obtenido por medio de 
+	una solicitud al cliente previa.
+	
+	Para mantener el listado de libros actualizado, pensando en el hecho de que pueda tener abiertas dos o más 
+	ventanas al exe una axn que provoque cb, se hará una actualización del listado de objetos, en ese caso libros,
+	cuando el usuario solicite se lleve a cabo alguno de los tipos de axn siguientes
+		> cb estado de meGusta a un libro
+		> adquirir un libro nuevo
+		
+	** en otras palabras, después de invocar al servidor para que refleje estos cambios en la DB, angular tb invocará
+	   al método para buscar nuevamente el listado completo, en este caso de lirbosAdquiridos del usuario en cuestión.
+	   
+	En el caso de los libros de la tienda, se hará la invocación para obtener todos los libros publicados, en un lugar
+	que sea exe cada vez que el usuario se diriga a la página
+		para que así al refrescar se muestre el listado actualizado...
+		
+
