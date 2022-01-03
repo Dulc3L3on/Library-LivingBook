@@ -35,8 +35,7 @@ public class UsuarioDAO {//en este caso usuario = lector...
      private final String ACTUALIZAR_USUARIO= "UPDATE Usuario SET nombre = ?, apellido = ?, username = ?,"
                                                                             + " password = ?, correo = ?, numeroTelefono = ?,  numeroTarjeta = ?"
                                                                             + "WHERE id = ?";//estos son todos los campos que se podrían editar, hasta el momento pienso que para no tener que revisar el valor de cada botón y así saber que dato actualizó, o hacer una función por dato, o hacer que se reciba una lista con los nombres de las columnas y los valores modificados, mejor que se envíen todos los datos que pueden ser actualizados, ya sea que haya recibido cambio o no...
-     
-     
+          
       public UsuarioDAO(){
         conexion = ManejadorDB.darConexion();
         herramienta = new Herramienta();
@@ -60,17 +59,17 @@ public class UsuarioDAO {//en este caso usuario = lector...
               statement.setInt(11, usuario.getEsAutor());
               
               statement.executeUpdate();
+              
               if(usuario instanceof Autor){
-                  return autorDAO.crearAutor(usuario);
+                  autorDAO.crearAutor(usuario);
               }
+              return configuracionDAO.crearConfiguracionInicialCuenta(usuario.getID(), usuario.getGenero());
               //se llama al transformador, de ser necesario mantener un objeto de aquello que se requiera mantener en la sesión iniciada, es decir de ser nece crear un reporistorio xD
           }catch(SQLException sqlE){
               System.out.println("Error at tried INSERT the user"+ sqlE.getMessage());
               return false;
-          }
-         
-          //estaba pensando que para mantener la info del usuario, puesto que solo se modificaría cuando el usuario decida hacerlo, sería bueno crear algo como un repositorio, que sea de tipo singleton, con el fin de mantener la instancia y así acceder más fácil a los datos, pero creo que eso será solo útil aquí en el backend, porque creo que no se puede devolver nada desde aquí hacia angular, además él sería el primero en tener el objeto actualizado...
-          return true;
+          }         
+          //estaba pensando que para mantener la info del usuario, puesto que solo se modificaría cuando el usuario decida hacerlo, sería bueno crear algo como un repositorio, que sea de tipo singleton, con el fin de mantener la instancia y así acceder más fácil a los datos, pero creo que eso será solo útil aquí en el backend, porque creo que no se puede devolver nada desde aquí hacia angular, además él sería el primero en tener el objeto actualizado... 
      }
      
       public Usuario buscarUsuario(String nameORemail, String password){//no se exe al registrarse el usuario, puesto que ya se poseerá el objeto en angular antes de nvocar al servlet para crear al usuario o editor, según corresp al tipo de obj/que esté o no chequeado el checkbox...
@@ -112,8 +111,11 @@ public class UsuarioDAO {//en este caso usuario = lector...
               System.out.println("Error at tried UPDATE the user"+ sqlE.getMessage());
               return false;
           }
-                    
-          return (usuario.getEsAutor() == 0)?true:autorDAO.actualizarAutor(usuarioAutor);
+          
+          if(usuario.getEsAutor() == 1){
+              autorDAO.actualizarAutor(usuarioAutor);
+          }                    
+          return configuracionDAO.actualizarDatosDeConfiguracion(usuario.getID(), usuario.getConfiguracionCuenta());
      }
        
 }//TERMINADA uwu, porque no vamos a eliminar usuario (tpco autores xD)

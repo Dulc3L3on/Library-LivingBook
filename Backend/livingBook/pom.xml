@@ -22,12 +22,38 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
+         <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>9.0.53</version>
+            <scope>provided</scope>
+        </dependency>
+        
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.27</version>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+          <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+         </dependency>
+
+        
+        <!--hace falta la de TomCat, es que aún no sé si add eso porque no está agregado al netbeans o porque para permitir la comunicación si es nec addlo como dep. En el billetón no fue nec, por eso me surgieron esas dos dudas...-->
+
       
     </dependencies>
 

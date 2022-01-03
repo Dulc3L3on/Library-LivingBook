@@ -5,20 +5,19 @@
  */
 package Modelo.Entidades.Libro;
 
-import java.sql.Date;
-
 /**
  *
  * @author phily
  */
 public class LibroAdquirido extends Libro{    
     private int tiempoLectura;
-    private final Date fechaAdquisicion;
+    private final String fechaAdquisicion;
     private int meGusta;//eqq qboolean
 
-    public LibroAdquirido(int ID, String nombre, double precio, int IDautor, Date fechaPublicacion, String reseña, 
-            String tipo, String portada, String archivoPDF, int tiempoLectura, Date fechaAdquisicion, int meGusta) {
-        super(ID, nombre, precio, IDautor, fechaPublicacion, reseña, tipo, portada, archivoPDF);
+    public LibroAdquirido(int ID, String nombre, double precio, int IDautor, String fechaPublicacion, String reseña, 
+            String tipo, String portada, String archivoPDF, int cantidadMeGusta, int tiempoLectura, 
+            String fechaAdquisicion, int meGusta) {
+        super(ID, nombre, precio, IDautor, fechaPublicacion, reseña, tipo, portada, archivoPDF, cantidadMeGusta);
         
         this.tiempoLectura = tiempoLectura;
         this.fechaAdquisicion = fechaAdquisicion;
@@ -37,7 +36,7 @@ public class LibroAdquirido extends Libro{
         return tiempoLectura;
     }
 
-    public Date getFechaAdquisicion() {
+    public String getFechaAdquisicion() {
         return fechaAdquisicion;
     }
 

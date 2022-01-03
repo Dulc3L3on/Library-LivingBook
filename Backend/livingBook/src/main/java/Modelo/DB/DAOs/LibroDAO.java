@@ -25,9 +25,13 @@ public class LibroDAO {
      
      private final String CREAR_LIBRO = "INSERT INTO Libro (nombre, precio, IDautor, resenia, tipo, portada, archivoPDF) "
                                                               + "VALUES (?,?,?,?,?,?,?)";
-     private final String BUSCAR_LIBROS = "SELECT * FROM Libro";
+     private final String BUSCAR_LIBROS = "SELECT Libro.*, PopularidadLibro.cantidadMeGusta FROM Libro "
+                                                                    + "INNER JOIN PopularidadLibro ON Libro.ID = PopularidadLibro.IDLibro";
      //este listado al igual que el de los de la tienda y los de miBiblioteca, será pasado al repositorio por medio de comunicación padre/ (data binding) bueno si es que invoco el repositorio por medio del selector...
-     private final String BUSCAR_LIBROS_CREADOS = "SELECT * FROM Libro WHERE IDautor = ?";//se utilizará cuando un usuario visite la página de un autor en particular, luego de haber clickeado en su alias (el nombre lo verá hasta llegar a su perfil...)
+     private final String BUSCAR_LIBROS_CREADOS = "SELECT Libro.*, PopularidadLibro.cantidadMeGusta"
+                                                                                       + " FROM Libro INNER JOIN "
+                                                                                       + "PopularidadLibro ON Libro.ID = PopularidadLibro.IDLibro "
+                                                                                       + "WHERE IDautor = ?";//se utilizará cuando un usuario visite la página de un autor en particular, luego de haber clickeado en su alias (el nombre lo verá hasta llegar a su perfil...)
      private final String ACTUALIZAR_LIBRO = "UPDATE Libro SET nombre = ?, precio = ?, resenia = ?, tipo = ?,"
                                                                          + " portada = ?, archivoPDF = ?";
      private final String BORRAR_LIBRO = "DELETE FROM Libro WHERE ID = ?";//tb se debería eliminar de libro adquirido y popularidad libro, por eso ON DELETE CASCADE en ellos xD
@@ -104,6 +108,21 @@ public class LibroDAO {
           }         
          return true;
      }
+     
+      public boolean actualizarCantidadMeGusta(String tipoOperacion, Libro libro){//enviarán un + o un - dependiendo en lugar del nombre y en el valor el autor, para evitar tener qué invocar más veces el método que permite intercambiar datos entre ANgular y Java... creo que te referías al post xD, ahí revisas cómo lo hizo el inge, ese tuto con stackBlitz, y los otros 2 xD, porque creo que hay más de una forma de setear los daots [directamente, con JSON, en el caso del inge] mira cuál resulta útil en "qué" situación
+        String ACTUALIZAR_ME_GUSTA = "UPDATE PopularidadLibro SET cantidadMeGusta = cantidadMeGusta "+
+                                                                    tipoOperacion+" 1 WHERE IDLibro = ?";
+        
+           try(PreparedStatement statement = conexion.prepareStatement(ACTUALIZAR_ME_GUSTA)){
+              statement.setInt(1, libro.getID());
+              
+              statement.executeUpdate();
+          }catch(SQLException sqlE){
+              System.out.println("Error at tried UPDATE Libro's like's number"+ sqlE.getMessage());          
+              return false;
+          }            
+        return true;
+    }
      
      public boolean eliminarLibro(int IDLibro){
          try(PreparedStatement statement = conexion.prepareStatement(BORRAR_LIBRO)){

@@ -15,8 +15,8 @@ public class Configuracion {
     private final int IDUsuario;
     private String tema;
     private String fotoPerfil;//en Base64
-    private String fotoPortada;//en Base64, sin importar que decida que sea un gradiente o una imagen, si es gradiente pienso enviar el color así normal xD
-    private List<String> preferencias;//la cual se llenará por medio de una función que separará cada teŕmino a partir de las "," colocadas para formar una "caddena" en la DB...
+    private String portada;//en Base64, sin importar que decida que sea un gradiente o una imagen, si es gradiente pienso enviar el color así normal xD
+    private List<String> preferencias;//si no se logra enviar el Array desde angular hacia aquí, tendrá que pasarse a un String[]
 
     public Configuracion(int IDUsuario, String tema, String fotoPerfil, String fotoPortada, List<String> preferencias) {
         this.IDUsuario = IDUsuario;
@@ -36,7 +36,7 @@ public class Configuracion {
     }
 
     public void setFotoPortada(String fotoPortada) {
-        this.fotoPortada = fotoPortada;
+        this.portada = fotoPortada;
     }    
 
     public void setPreferencias(List<String> preferencias) {
@@ -56,7 +56,7 @@ public class Configuracion {
     }
     
     public String getFotoPortada(){
-        return fotoPortada;
+        return portada;
     }
 
     public List<String> getPreferencias() {

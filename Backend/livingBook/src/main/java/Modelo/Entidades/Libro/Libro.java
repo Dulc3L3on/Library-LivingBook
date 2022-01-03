@@ -5,8 +5,6 @@
  */
 package Modelo.Entidades.Libro;
 
-import java.sql.Date;
-
 /**
  *
  * @author phily
@@ -16,14 +14,16 @@ public class Libro {
      String nombre;
      double precio;
      final int IDautor;
-     final Date fechaPublicacion;
+     final String fechaPublicacion;
      String reseña;
      final String tipo;
      final String portada;//imagen en base64
      final String archivoPDF;//en base64
+     //popularidad; variable
+     int cantidadMeGusta;
 
-    public Libro(int ID, String nombre, double precio, int IDautor, Date fechaPublicacion, String reseña, 
-            String tipo, String portada, String archivoPDF) {
+    public Libro(int ID, String nombre, double precio, int IDautor, String fechaPublicacion, String reseña, 
+            String tipo, String portada, String archivoPDF, int cantidadMeGusta) {
         this.ID = ID;
         this.nombre = nombre;
         this.precio = precio;
@@ -33,6 +33,8 @@ public class Libro {
         this.tipo = tipo;
         this.portada = portada;
         this.archivoPDF = archivoPDF;
+        
+        this.cantidadMeGusta = cantidadMeGusta;
     }    
 
     public void setNombre(String nombre) {
@@ -45,6 +47,10 @@ public class Libro {
 
     public void setReseña(String reseña) {
         this.reseña = reseña;
+    }
+    
+    public void setCantidadMeGusta(int cantidadMeGusta){
+        this.cantidadMeGusta = cantidadMeGusta;
     }
 
     public int getID() {
@@ -63,7 +69,7 @@ public class Libro {
         return IDautor;
     }
 
-    public Date getFechaPublicacion() {
+    public String getFechaPublicacion() {
         return fechaPublicacion;
     }
 
@@ -81,6 +87,10 @@ public class Libro {
     
     public String getArchivoPDF() {
         return archivoPDF;
+    }
+    
+    public int getCantidadMeGusta() {
+        return cantidadMeGusta;
     }
     
     /*creo que los setter no serán necesarios, porque si no estoy mal, siemre debería estarse solicitando

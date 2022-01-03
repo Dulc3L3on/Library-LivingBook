@@ -7,6 +7,7 @@ package Modelo.DB.DAOs;
 
 import Modelo.DB.ManejadorDB;
 import Modelo.Entidades.Configuracion;
+import Modelo.Herramientas.Herramienta;
 import Modelo.Herramientas.Transformador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,13 +21,22 @@ import java.sql.SQLException;
 public class ConfiguracionDAO {
     private final Connection conexion;
     private final Transformador transformador;
+    private final Herramienta herramienta;
+   //Luego de registrarse exitosamente, se exe la guarda de login, que empleará los métodos del backend para obtener los datos de conf,
+    //[puesto que ya posee los del usuario al contrario del caso en el que se esté logeando directametne], esto con el fin de no tener
+    //una lógica repetida, por el tipo de foto de perfil y tb resulta mejor, puesto que es posible que los valores por defecto cb
+    //y por lo tanto de esta manera se evitaría tener que cb los datos en más de un lugar...
     
     private final String BUSCAR_CONFIGURACION_CUENTA = "SELECT * FROM Configuracion WHERE IDUsuario = ?";
-    private final String AGREGAR_DATOS_CONFIGURACION_CUENTA = "";
+    private final String CREAR_CONFIGURACION_INICIAL = "INSERT INTO Configuracionn (IDUsuario, fotoPerfil) "
+                                                                                               + "VALUES (?,?)";
+    private final String ACTUALIZAR_CONFIGURACION_CTA = "UPDATE Configuracion SET tema = ?, fotoPerfil = ?, "
+                                                                                                     + "fotoPortada = ?, preferencias = ? WHERE IDUsuario = ?";
     
     public ConfiguracionDAO(){
         conexion = ManejadorDB.darConexion();
         transformador = new Transformador();
+        herramienta = new Herramienta();
     }
         
     public Configuracion buscarConfiguracionDeLaCuenta(int IDUsuario){
@@ -47,13 +57,35 @@ public class ConfiguracionDAO {
         return configuracionCuenta;
     }
     
-    public boolean actualizarConfiguracionDeLaCuenta(int IDUsuario){//en los métodos de acutalización se haría la corroboaración de existencia del objeto, para así crearlo o acutalizarlo. Esto solo en aquellos métodos en los que se trabaje con entidades propias de la sesión...
-        //Puesto que hasta cierto punto no sabes exactamente cuando es que está agregando datos por primera vez, 
-        //podrías emplear el comando de MYSQL que revisa si hay existencias, para actualizar o crear de ser el
-        //caso contrario... sale más fácil porque no tendrías que crera un método para saber cuando invocar a
-        //crear o actualizar, en el caso especial de la configuración
-        
-        return false;
+    //se llama al crear el usuario y al actualizarl datos [es decir cuando presione "guardar" en la pág de configuraación...] xD
+    public boolean crearConfiguracionInicialCuenta(int IDUsuario, String genero){
+         try(PreparedStatement statement = conexion.prepareStatement(CREAR_CONFIGURACION_INICIAL)){
+              statement.setInt(1, IDUsuario);
+              statement.setString(2, herramienta.establecerFotoPerfilPorDefecto(genero));                       
+              
+              statement.executeUpdate();            
+          }catch(SQLException sqlE){
+              System.out.println("Error at tried INSERT the config"+ sqlE.getMessage());
+              return false;
+          }
+        return true;
+    }  
+    
+    public boolean actualizarDatosDeConfiguracion(int IDUsuario, Configuracion configuracion){
+        try(PreparedStatement statement = conexion.prepareStatement(CREAR_CONFIGURACION_INICIAL)){
+              statement.setString(1, configuracion.getTema());
+              statement.setString(2, configuracion.getFotoPerfil());
+              statement.setString(3, configuracion.getFotoPortada());
+              statement.setString(4, herramienta.transformarArregloACadena(
+                      (String[])configuracion.getPreferencias().toArray()));
+              statement.setInt(5, IDUsuario);
+              
+              statement.executeUpdate();            
+          }catch(SQLException sqlE){
+              System.out.println("Error at tried UPDATE the config"+ sqlE.getMessage());
+              return false;
+          }
+        return true;
     }  
     
 }

@@ -5,15 +5,19 @@
  */
 package Modelo.Herramientas;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.io.IOUtils;
+
 
 /**
  *
@@ -96,4 +100,31 @@ public class Herramienta {
          
          return lista;
      }
+     
+     public String transformarArregloACadena(String[] arregloAtransformar){         
+         String laCadena = "";
+         
+         for (int elementoActual = 0; elementoActual < arregloAtransformar.length; elementoActual++) {
+             laCadena+= arregloAtransformar[elementoActual]+
+                     ((elementoActual==(arregloAtransformar.length-1))?"":",");
+         }         
+         return laCadena;
+     }
+     
+     public String establecerFotoPerfilPorDefecto(String genero){
+         String base64="";       
+        
+        try{
+            InputStream streamReader = getClass().getResourceAsStream((genero.equals("femenino"))?"/avatar-mujer.jpg":"/avatar-hombre.jpg");
+            byte[] imageBytes = IOUtils.toByteArray(streamReader);
+            base64 = Base64.getEncoder().encodeToString(imageBytes);
+            System.out.println(base64);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return null;//no tengo algo pensado para tratar con eso :v, así que espero no de error xD
+        }         
+        return "data:image/png;base64,"+base64;
+    }
+     
 }

@@ -69,10 +69,10 @@ ALTER TABLE LibroAdquirido ADD FOREIGN KEY(IDLibro) REFERENCES Libro(ID) ON DELE
 
 CREATE TABLE Configuracion(
 IDUsuario int NOT NULL,
-tema varchar(20),
+tema varchar(20) DEFAULT 'nameDefectTheme',
 fotoPerfil TEXT,
-fotoPortada TEXT,
-preferencias varchar(2000)
+portada TEXT,
+preferencias varchar(2000) DEFAULT NULL
 );
 ALTER TABLE Configuracion ADD FOREIGN KEY(IDUsuario) REFERENCES Usuario(ID);
 

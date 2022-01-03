@@ -6,7 +6,6 @@
 package Modelo.Entidades.Usuario;
 
 import Modelo.Entidades.Configuracion;
-import java.sql.Date;
 
 /**
  *
@@ -24,11 +23,13 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
      String correo;
      int numeroTelefono;
      int numeroTarjeta;
-     Date fechaUnion;
+     String fechaUnion;//mejor que sean string xD
      int esAutor;//no lo cambiarás a boolean???
      Configuracion configuracionCuenta;
 
-    public Usuario(int ID, String nombre, String apellido, String username, String genero, String birthday, String paisOrigen, String password, String correo, int numeroTelefono, int numeroTarjeta, Date fechaUnion, int esAutor) {
+    public Usuario(int ID, String nombre, String apellido, String username, String genero, String birthday,
+            String paisOrigen, String password, String correo, int numeroTelefono, int numeroTarjeta, 
+            String fechaUnion, int esAutor) {
         this.ID = ID;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -122,7 +123,7 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
         return numeroTarjeta;
     }
 
-    public Date getFechaUnion() {
+    public String getFechaUnion() {
         return fechaUnion;
     }
 
