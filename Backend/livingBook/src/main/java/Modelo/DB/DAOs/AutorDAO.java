@@ -26,6 +26,9 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
     private final TransformadorDeConjuntos transformadorConjunto;
     
     private final String CREAR_AUTOR ="INSERT INTO Autor (IDUsuario, descripcion) VALUES (?,?)";
+    private final String BUSCAR_AUTOR = "SELECT Usuario.*, Autor.fechaDeUnion, Autor.descripcion, Autor.cantidadMeGusta "
+                                                                  + "FROM Autor INNER JOIN Usuario ON Autor.IDUsuario = Usuario.IDUsuario "
+                                                                 + "WHERE IDUsuario = ?";
     private final String BUSCAR_AUTOR_LOGIN = "SELECT fechaDeUnion, descripcion, cantidadMeGusta FROM Autor "
                                                                                + "WHERE IDUsuario = ? ";
     private final String BUSCAR_AUTORES = "SELECT * FROM Autor";
@@ -37,19 +40,14 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
      transformadorConjunto = new TransformadorDeConjuntos();
    }   
         
-    public boolean crearAutor(Usuario usuario){//será invocado de ser necesario, luego de haber creado al usuario, puseto que el autor se debe registrar también en su tabla respectiva...
+    public void crearAutor(Usuario usuario) throws SQLException{//será invocado de ser necesario, luego de haber creado al usuario, puseto que el autor se debe registrar también en su tabla respectiva...
         Autor autor = (Autor) usuario;//solo podría dar error si es que no aviso al enviar el obj desde angular, que este es un autor... aunque por lo que ví con Marcos, si se puede notificar un nombre (aquí en este caso iría el tipo) y el objeto, entonces todo nice xD
-        
-        try(PreparedStatement statement = conexion.prepareStatement(CREAR_AUTOR)){
-              statement.setInt(1, autor.getID());
-              statement.setString(2, autor.getDescripcion());              
-              
-              statement.executeUpdate();             
-          }catch(SQLException sqlE){
-              System.out.println("Error at tried INSERT the new author"+ sqlE.getMessage());
-              return false;
-          }                 
-          return true;
+        try (PreparedStatement statement = conexion.prepareStatement(CREAR_AUTOR)) {
+            statement.setInt(1, autor.getID());
+            statement.setString(2, autor.getDescripcion());
+            
+            statement.executeUpdate();
+        }          
     }
     
     public Autor buscarAutor(Usuario usuario, int id){//se utilizaá para el login, en el cual no se sabe si el usuario es un lector o un autor...
@@ -70,7 +68,7 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
       public Autor buscarAutor(int id){//se utilizaá para formar las obras y el autorSeguido, es decir cuando quieras recuperar un autor específico
        Autor autor = null;
         
-          try(PreparedStatement statement = conexion.prepareStatement(BUSCAR_AUTOR_LOGIN, ResultSet.TYPE_SCROLL_SENSITIVE, 
+          try(PreparedStatement statement = conexion.prepareStatement(BUSCAR_AUTOR, ResultSet.TYPE_SCROLL_SENSITIVE, 
                         ResultSet.CONCUR_UPDATABLE)){
               statement.setInt(1, id);
 

@@ -7,7 +7,7 @@ CREATE TABLE Usuario(
 ID int NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 nombre varchar(150) NOT NULL,
 apellido varchar(150) NOT NULL,
-userName varchar(150),
+username varchar(150),
 genero varchar(10),
 birthday varchar(10),
 paisOrigen varchar(30),

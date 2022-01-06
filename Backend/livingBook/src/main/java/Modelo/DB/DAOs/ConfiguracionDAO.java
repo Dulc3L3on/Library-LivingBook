@@ -38,7 +38,12 @@ public class ConfiguracionDAO {
         transformador = new Transformador();
         herramienta = new Herramienta();
     }
-        
+    
+   /*
+    Empleado al buscar usuario
+    [lo cual no sería util para llenar el campo
+    corresp de la entidad creada en Angular...]
+    */
     public Configuracion buscarConfiguracionDeLaCuenta(int IDUsuario){
         Configuracion configuracionCuenta = null;
         
@@ -58,17 +63,13 @@ public class ConfiguracionDAO {
     }
     
     //se llama al crear el usuario y al actualizarl datos [es decir cuando presione "guardar" en la pág de configuraación...] xD
-    public boolean crearConfiguracionInicialCuenta(int IDUsuario, String genero){
+    public void crearConfiguracionInicialCuenta(int IDUsuario, String genero) throws SQLException{
          try(PreparedStatement statement = conexion.prepareStatement(CREAR_CONFIGURACION_INICIAL)){
               statement.setInt(1, IDUsuario);
               statement.setString(2, herramienta.establecerFotoPerfilPorDefecto(genero));                       
               
               statement.executeUpdate();            
-          }catch(SQLException sqlE){
-              System.out.println("Error at tried INSERT the config"+ sqlE.getMessage());
-              return false;
           }
-        return true;
     }  
     
     public boolean actualizarDatosDeConfiguracion(int IDUsuario, Configuracion configuracion){

@@ -26,9 +26,9 @@ public class UsuarioDAO {//en este caso usuario = lector...
      private final AutorDAO autorDAO;
      private final ConfiguracionDAO configuracionDAO;
      
-     private final String CREAR = "INSERT INTO Usuario (nombre, genero, birthday, paisOrigen, "
+     private final String CREAR = "INSERT INTO Usuario (nombre, apellido, username, genero, birthday, paisOrigen, "
                                                     + " password, correo, numeroTelefono, numeroTarjeta, esAutor)"
-                                                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      private final String BUSCAR_USUARIO = "SELECT * FROM Usuario"
                                                                       + " WHERE userName = ? OR correo = ? AND password = ?";//puesto que no hay administrador, solo se requirá una busqueda para el login, a difernecia del autor, que tiene una opción propia para filtrarlos y encontrarlos...
      
@@ -44,32 +44,29 @@ public class UsuarioDAO {//en este caso usuario = lector...
         configuracionDAO = new ConfiguracionDAO();
      }
      
-     public boolean crearUsuario(Usuario usuario){//para exe, despues de exe login y signup correctamente
-          try(PreparedStatement statement = conexion.prepareStatement(CREAR)){
-              statement.setString(1, usuario.getNombre());
-              statement.setString(2, usuario.getApellido());
-              statement.setString(3, usuario.getUsername());
-              statement.setString(4, usuario.getGenero());
-              statement.setString(5, usuario.getBirthday());
-              statement.setString(6, usuario.getPaisOrigen());
-              statement.setString(7, herramienta.encriptarContraseña(usuario.getPassword()) );
-              statement.setString(8, usuario.getCorreo());
-              statement.setInt(9, usuario.getNumeroTelefono());
-              statement.setInt(10, usuario.getNumeroTarjeta());
-              statement.setInt(11, usuario.getEsAutor());
-              
-              statement.executeUpdate();
-              
-              if(usuario instanceof Autor){
-                  autorDAO.crearAutor(usuario);
-              }
-              return configuracionDAO.crearConfiguracionInicialCuenta(usuario.getID(), usuario.getGenero());
-              //se llama al transformador, de ser necesario mantener un objeto de aquello que se requiera mantener en la sesión iniciada, es decir de ser nece crear un reporistorio xD
-          }catch(SQLException sqlE){
-              System.out.println("Error at tried INSERT the user"+ sqlE.getMessage());
-              return false;
-          }         
-          //estaba pensando que para mantener la info del usuario, puesto que solo se modificaría cuando el usuario decida hacerlo, sería bueno crear algo como un repositorio, que sea de tipo singleton, con el fin de mantener la instancia y así acceder más fácil a los datos, pero creo que eso será solo útil aquí en el backend, porque creo que no se puede devolver nada desde aquí hacia angular, además él sería el primero en tener el objeto actualizado... 
+     public void crearUsuario(Usuario usuario) throws SQLException{
+         try ( //para exe, despues de exe login y signup correctamente
+             PreparedStatement statement = conexion.prepareStatement(CREAR)) {
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getApellido());
+            statement.setString(3, usuario.getUsername());
+            statement.setString(4, usuario.getGenero());
+            statement.setString(5, usuario.getBirthday());
+            statement.setString(6, usuario.getPaisOrigen());
+            statement.setString(7, herramienta.encriptarContraseña(usuario.getPassword()) );
+            statement.setString(8, usuario.getCorreo());
+            statement.setInt(9, usuario.getNumeroTelefono());
+            statement.setInt(10, usuario.getNumeroTarjeta());
+            statement.setInt(11, usuario.getEsAutor());
+             
+            statement.executeUpdate();
+         
+            if(usuario instanceof Autor){
+                 autorDAO.crearAutor(usuario);
+             }
+             configuracionDAO.crearConfiguracionInicialCuenta(usuario.getID(), usuario.getGenero());
+             //se llama al transformador, de ser necesario mantener un objeto de aquello que se requiera mantener en la sesión iniciada, es decir de ser nece crear un reporistorio xD          
+         }
      }
      
       public Usuario buscarUsuario(String nameORemail, String password){//no se exe al registrarse el usuario, puesto que ya se poseerá el objeto en angular antes de nvocar al servlet para crear al usuario o editor, según corresp al tipo de obj/que esté o no chequeado el checkbox...
