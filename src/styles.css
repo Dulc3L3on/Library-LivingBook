@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&family=Cinzel+Decorative&family=Cookie&family=Jost&family=Manrope:wght@600&family=Cutive+Mono&family=Poppins&family=Readex+Pro:wght@200&&family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Berkshire+Swash&family=Cookie&family=Kaushan+Script&family=Merienda+One&family=Parisienne&family=Satisfy&display=swap');/*handwriting*/
+
+html, body { height: 90%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

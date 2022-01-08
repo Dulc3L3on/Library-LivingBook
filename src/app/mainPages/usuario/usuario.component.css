@@ -1,0 +1,118 @@
+:host{
+    width: 1420px;
+    height: 100%;
+    margin-top: -20px;
+
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 17px;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    width: 115px;
+    height: 50px;
+    margin: 5px;
+}
+
+button:hover{
+    background-color:aliceblue;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#host{    
+    width: 100%;
+    height: 100%;    
+}
+
+#header{
+    width: 100%;
+    height: 23%;
+
+    /*background-color: brown;*/
+}
+
+#box_profileCover{    
+    /*display: flex;*/
+    width: 99.9%;
+    height: 160px;
+    border-radius: 15px;  
+    
+    /*padding: 11px 20px 11px 20px;*//*útil si tuviera dentro una img*/
+    /*justify-content: center;
+    flex-wrap: wrap;*/
+    background-image: linear-gradient( 109.6deg,  rgba(121,203,202,1) 11.2%, rgba(119,161,211,1) 91.1% );
+    /*background-image: linear-gradient( 135deg, #a3e4ba 10%, #4b7fcc 100%);/*es decir que el usuario podría escoger otro gradiente, pero eso no lo vayas a hacer a menos que este fácil y ya hallas terminado, porque tendrías que crear un color chooser y que mostrar elresultado de las mezclas de inmediato...*/
+    /*background-color: #0093E9;
+    background-image: linear-gradient(270deg, #1881be 0%, #9ae4db 100%);*/
+
+}
+
+/*#cover{
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;    
+}*/ 
+
+#box-photoProfile{
+    position: relative;
+    border-radius: 50%;/*tb lo debe tener la img*/
+    height: 170px;
+    width: 170px;
+    margin: -10% 44.5%;    
+}
+
+#photo{
+    border-radius: 50%;
+    height: 170px;
+    width: auto;
+}
+
+#body{    
+    display: flex;
+    width: 100%;
+    height: 77%;
+}
+
+#left{
+    border: 0.5px dashed grey;
+    width: 18.5%;
+    height: 100%;
+}
+
+#right{
+    display: flex;/*esto lo puse por las preferencias...*/
+  /*  background-color: rgb(209, 183, 143);*/
+    width: 81.5%;
+    height: 100%;
+    flex-direction: column;
+}
+
+#preferencias{
+    width: 100%;
+    height: 20%;
+
+    border: 0.5px dashed grey;
+}
+
+#autorMenu{
+    width: 100%;
+    height: 11%;
+
+    /*background-color: aqua;*/
+}
+
+.markup{
+    border-bottom: 1.5px solid grey;
+    font-weight: bold;
+}
+
+#content{    
+    width: 100%;
+    height: 69%;
+    overflow: auto;
+}

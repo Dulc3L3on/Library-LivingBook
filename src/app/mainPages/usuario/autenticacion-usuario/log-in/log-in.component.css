@@ -1,0 +1,134 @@
+:host{/*esto es en realidad lo que hace parecer la ventana modal xD*/
+    display: flex;
+    background: rgba(63, 63, 63, 0.582);    
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: all .5s;
+    align-items: center; 
+}
+
+#modal{/*esto era lo del host xD*/
+    background: rgb(202,221,230); 
+    background: linear-gradient(180deg, rgba(202,221,230,0.9248074229691877) 0%, rgba(191,178,207,0.9332107843137255) 85%) !important;
+        /*background: rgb(252,245,212);
+    background: linear-gradient(180deg, rgba(252,245,212,1) 3%, rgba(240,223,142,1) 73%, rgba(227,201,112,0.9920343137254902) 100%);*//*anaranjado*/
+        /*background: rgb(255,253,244);
+        background: linear-gradient(180deg, rgba(255,253,244,1) 3%, rgba(249,240,229,1) 73%, rgba(231,223,212,1) 100%);*/
+        /*background: rgb(247,251,251);
+    background: linear-gradient(180deg, rgba(247,251,251,1) 0%, rgba(233,229,249,1) 73%, rgba(214,212,231,1) 100%);*/
+        /*background: rgb(247,251,251);
+        background: linear-gradient(180deg, rgba(247,251,251,1) 0%, rgba(229,238,249,1) 73%, rgba(207,206,218,1) 100%);*/
+        /*    background: rgb(239,247,247);
+    background: linear-gradient(180deg, rgba(239,247,247,1) 0%, rgba(199,221,218,1) 73%, rgba(177,204,202,1) 100%);*/
+        /*background-color: #EFF2F2;*//*primer fondo, con grsi bonito xD*/
+        width: 500px !important;
+        height: 420px !important;
+        border-radius: 15px !important;
+        padding: 45px 45px 45px 45px !important;
+        text-align: center !important;
+        border: 0.5px solid gray !important; 
+
+        margin-left: 37%;
+}
+
+.contentLog{    
+    width: 400px !important;
+    height: 350px !important;
+    display: flex !important;
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 18px !important;
+    text-align: center !important;
+    flex-direction: column !important;
+    align-items: center;    
+}
+a,p{
+    font-size: 13px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+#header{
+    width: 100%;
+    height: 15%;
+}
+
+#body{
+    width: 100%;
+    height: 85%;
+}
+
+table{
+    width: 100%;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+td{  
+    height: 60px;    
+    vertical-align: middle;
+}
+
+label{
+    height: 55px;    
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    /*background-color: aliceblue;*/
+    background-color: rgba(240, 248, 255, 0.781);
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px rgb(151, 150, 150);/*antes era #999*/
+    /*box-shadow: 0px 0px 15px 0px #999;*/
+}
+
+#input{
+    width: 250px;
+    height: 35px;
+    font-size: 18px;
+    background-color: transparent;
+    border:none;
+    border-left: 0.5px solid grey;
+    margin-left: 7px;
+    padding-left: 10px;
+}
+
+#input:focus{
+    outline: none;
+}
+
+#title{
+    font-family: 'Jost', sans-serif;
+    font-size: 34px;
+   
+}
+
+#button{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;    
+    color:rgba(34, 32, 32, 0.747);    
+    background-color: #EEC46B;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.692);
+    width: 135px;
+    height: 40px;
+    margin-top: -7px;    
+    
+}
+
+#button:disabled{
+    color:rgba(0, 0, 0, 0.329);    
+}
+
+#button:enabled{
+    box-shadow: 2px 2px 5px #999;
+}
+

@@ -1,0 +1,10 @@
+<div id="host">
+    <button id="no_button" type="button" style="margin-right: 10px;"><i class="bi bi-filter-left" (click)="changeStateOfShowingFilter()"></i></button>
+    <label id="laberForIcon" for="search-bar"><button id="no_button" type="button"><i class="bi bi-search"></i></button></label><!--ó podría poner que es de tipo button para así hacer todo solo con el método del click, digo, "solo" porque con JSP, al colocar submit se iba directamente al servlet correspondiente y no creo necesario eso, de todos modos luego de exe evts, el componente donde se generó se vuelve a "leer" para mostrar lo que el evt conllevaba-->
+    <input id="search-bar" type="search"/>
+</div>
+<ng-template [ngIf]="showFilter">
+    <div id="filtro" style="margin: 0px -250px;">
+        <app-filtro></app-filtro>
+    </div>    
+</ng-template>

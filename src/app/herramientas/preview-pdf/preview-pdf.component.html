@@ -1,0 +1,6 @@
+<div id="visorPDFBox">
+    <!--tienes que ver por qué se pierde el resto del blob... al parecer cambia por el hecho de usar un target_blank...-->
+    <!--quizá si debas crear el iframe cada vez, después de haber creado el blob del pdf... me imagino que con el routerLink no daría este problema, pero me daba error sintáctico :v-->
+    <!--deplano que si toca ver como lo resolvieron ellos o usar el ng2-module...-->
+    <iframe [src]="pdfProcesado" width="100%" height="100%"></iframe><!--me dice del data binding, pero se supone que ya lo arreglé :p SafeValue must use [property]=binding: -->
+</div>

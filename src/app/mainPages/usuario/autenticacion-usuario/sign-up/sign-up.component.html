@@ -1,0 +1,206 @@
+<div id="modal">
+    <form [formGroup] = "signUpForm">
+        <div id="contentSignUp">          
+            <div id="header">
+                <div id="close" style="width: 123%; margin: -30px -90px 19px; padding-left: 103%; border-radius: 7px;"><!--background-color: rgba(234, 239, 243, 0.87);-->
+                    <button type="reset" class="btn-close" (click)="hideMe()"></button>
+                </div> 
+                
+                <p id="title">SIGNUP</p>    
+            </div>  
+           
+            <div id="body">
+                <div id="onlyAutors">
+                    <label>
+                        <div>I'm an autor</div>
+                        <input id="checkDecision"                 
+                         style="height: 20px;margin-left: -90px;margin-right: 130px;" 
+                         type="checkbox" 
+                         (click)="manejarCampoDescripcionPropia()"
+                         formControlName = "esAutor"/>
+                    </label>
+                </div>           
+    
+                <table>       
+                    <tr>
+                        <td><!--user info-->
+                            <label>
+                                <div id="subtitle"><i class="bi bi-person" style="margin-right: 7px;"></i>name</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                    type="text"                        
+                                    placeholder="your name"
+                                    formControlName = "name"
+                                    required/>
+                                </div>                                
+                            </label>
+                        </td>                  
+                        
+                        <td id="space"></td>
+    
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-person" style="margin-right: 7px;"></i>last name</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                    type="text"
+                                    placeholder="your name"
+                                    formControlName = "lastname"
+                                    required/>
+                                </div>                                
+                            </label>
+                        </td>                             
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-person" style="margin-right: 7px;"></i>username</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                     type="text"
+                                     placeholder="your name"
+                                     formControlName = "username"
+                                     required/>
+                                </div>                                
+                            </label>                                      
+                        </td>
+            
+                        <td id="space"></td>
+    
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-lock-fill" style="margin-right: 7px;"></i>password</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                     type="text"
+                                     placeholder="your password" 
+                                     formControlName = "password"
+                                     required/>   
+                                </div>                                
+                            </label>
+                        </td>                                
+                    </tr>         
+                    <tr><!--personal info (para "conocerle")-->
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-person" style="margin-right: 7px;"></i>gender</div>
+                                <div id="div-button">
+                                    <select id="select"
+                                     formControlName = "gender"
+                                     required>
+                                        <option disabled>Select your gender</option>
+                                        <option >Female</option>
+                                        <option >Male</option>                    
+                                    </select>  
+                                </div>                                
+                            </label>
+                        </td>
+            
+                        <td id="space"></td>
+
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-calendar" style="margin-right: 7px;"></i>birthday</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                     type="date"
+                                     formControlName = "birthday"
+                                     required/>
+                                </div>                                
+                            </label>
+                        </td>
+                    </tr>    
+                    <tr><!--info de contacto-->
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-map" style="margin-right: 7px;"></i>country</div>
+                                <div id="div-button">
+                                    <select id="select"                                     
+                                     formControlName = "country"
+                                     required>
+                                        <option disabled>Select your native country</option><!--le quité la opción selected, porque al asignarse un formControl, este es el que debe indicar qué opción seleccionar, para el caso de los selct, claro xD,si no se quiere seleccionar opción alguna, entonces basta con no enviar algo o colocar ''-->
+                                        <option >Guatemala</option>
+                                        <option >Estados Unidos</option>
+                                        <option >Inglaterra</option>
+                                        <option >Japón</option>
+                                        <option >Corea</option>
+                                        <option >Suiza</option>
+                                        <option >Suecia</option>
+                                    </select>  
+                                </div>                                
+                            </label>
+                        </td>
+
+                        <td id="space"></td>
+
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-telephone" style="margin-right: 7px;"></i>phone</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                     type="tel"
+                                     placeholder="0000-0000" 
+                                     formControlName = "phone"
+                                     required/>   
+                                </div>                                
+                            </label>
+                        </td>         
+                    </tr>  
+                    <tr>
+                        <td>
+                            <label>
+                                <div id="subtitle"><i class="bi bi-envelope" style="margin-right: 7px;"></i>email</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                     type="email"
+                                     placeholder="youremail@server.com" 
+                                     formControlName = "email"
+                                     required/>        
+                                </div>                                
+                            </label>
+                        </td>                                                        
+    
+                        <td id="space"></td>
+
+                        <td><!--pago info xD-->
+                            <label>
+                                <div id="subtitle"><i class="bi bi-credit-card-2-back" style="margin-right: 7px;"></i>credit card</div>
+                                <div id="div-button">
+                                    <input id="input"
+                                    type="number"
+                                    placeholder="00000000"
+                                    formControlName = "tarjeta"/>  
+                                </div>                                       
+                            </label>
+                        </td><!--si vas a separar la info en secciones, entonces colocas un rbtn o checkbox que diga, tengo tarjeta para activar el campo de número de tarjeta...-->    
+                    </tr>            
+                    <tr>
+                        <ng-template [ngIf]="mostrarDescripcion">
+                            <td colspan="6" rowspan="4">
+                                <textarea id="ownDescription"
+                                 style="margin-top: 15px; padding: 10px"
+                                 rows="4" cols="72" 
+                                 placeholder="Add your own description"
+                                 formControlName = "descripcion"
+                                 required><!--tengo mis dudas de si da problema, es decir, si aunque no se visualice el html obliga a que sea llenado el campo...-->
+                                </textarea>
+                            </td>                        
+                        </ng-template>                        
+                    </tr>
+                </table>     
+                
+                <div id="option">
+                    <input id="button" 
+                    type="submit" 
+                    value="Sig in"
+                    [disabled]="signUpForm.invalid"
+                    (click)="signIn()"/>
+                </div>                
+            </div>
+        </div>
+    </form>
+</div>
+
+
+   
+         

@@ -1,0 +1,170 @@
+:host {
+    font-family: 'Cinzel Decorative', sans-serif;
+    font-size: 50px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+i{
+  font-size: 25px;  
+}
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  .menuOptions{        
+    display: flex;
+    margin-left: 82.5%;    
+    align-items: center;
+  } 
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;    
+    display: flex;
+    align-items: center;  
+    background: rgb(239,247,247);
+    /*background: linear-gradient(90deg, rgba(239,247,247,1) 0%, rgba(199,221,218,1) 73%, rgba(177,204,202,1) 100%);*/
+    /*color fondo inicial gradiente: #eff7f7*/
+    background-color: #F5F6FA;
+    padding-left: 20px;
+  }
+
+  .noBoton{
+    font-family: 'Raleway', sans-serif;
+    font-size : 21px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 100px;
+    height: 45px;
+  }
+  
+  .markup{   
+    background-color: #97d1ce;/*#eab2f1   #b2f1e3*/
+    /*box-shadow: 2px 2px 5px #94A7AB; */
+    border: 1px solid black;
+  }
+
+  .btn-grad {background-image: linear-gradient(to right, #69b8b4 0%, #8cd3cf  51%, #5bc0bb  100%)}
+  .btn-grad {     
+     text-align: center;     
+     transition: 0.5s;
+     background-size: 200% auto;             
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     display: block;
+   }
+
+   .btn-grad:hover {
+     background-position: right center; /* change the direction of the change here */
+     text-decoration: none;
+   }
+    
+  .noBoton:hover{   
+    text-decoration: underline;  
+  }
+
+  #iconButton{
+    margin-right: 19px;  
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 50%;
+    height: 40px;
+    width: 43px;
+    text-align: center;   
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    height: 108%;/*esto fue lo que arreglé para que desapareciera la barra de scroll innecesaria xD*/
+    max-width: 1960px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /*
+    color: #1976d2; 
+    color: #125699;
+  */
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }

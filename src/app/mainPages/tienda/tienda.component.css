@@ -1,0 +1,23 @@
+:host{
+    width: 1420px;
+    height: 100%;
+    /*background-color: antiquewhite;*/
+    margin-top: -10px;    
+}
+
+#header{
+    display: flex;    
+    height: 10%;
+    width: 100%;
+    align-items: center;
+   
+    /*background-color: aquamarine;*/
+}
+
+#body{
+    width: 100%;
+    height: 90%;
+    text-align: center;  
+
+    /*background-color: brown;*/
+}

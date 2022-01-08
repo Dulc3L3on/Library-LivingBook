@@ -1,0 +1,23 @@
+:host{
+    width: 100%;/*puesto que el tamaño varía ya que al ser autor tendrá la pág de Mi perfil un banner en el lado izq...*/
+    height: 100%;
+    /*background-color: antiquewhite;*/
+    /*margin-top: -10px;*//*dependerá de como se vea en la página...*/
+}
+
+#header{
+    display: flex;    
+    height: 10%;
+    width: 100%;
+    align-items: center;
+   
+    /*background-color: aquamarine;*/
+}
+
+#body{
+    width: 100%;
+    height: 90%;
+    text-align: center;  
+
+    /*background-color: brown;*/
+}

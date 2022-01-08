@@ -1,0 +1,129 @@
+:host{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 13px;
+}
+
+#data{
+    display: flex;    
+    height: 90%;
+    width: 100%;    
+    justify-content: center;
+    overflow: auto;
+    flex-direction: column;
+
+    /*background-color: aqua;*/    
+}
+
+table{  
+    width: 100%;
+    height: 100%;    
+  
+}
+
+#head{
+    height: 11%;
+    width: 100%;
+
+    /*background-color: rgba(71, 130, 179, 0.432);*/
+    background-color: rgba(70, 81, 97, 0.616);
+    color: whitesmoke;
+}
+
+th{
+    /*border-right: 0.7px solid rgb(111, 112, 112);*/  
+    padding: 10px;
+}
+
+table td:nth-child(1), #C1{
+    width: 6%;
+}
+
+table td:nth-child(2), #C2{
+    width: 14%;
+}
+
+table td:nth-child(3), #C3{
+    width: 18%;
+}
+
+table td:nth-child(4), #C4{
+    width: 23%;
+}
+
+table td:nth-child(5), #C5{
+    width: 15%;
+}
+
+table td:nth-child(6), #C6{
+    width: 12%;
+}
+
+table td:nth-child(7), #C7{
+    width: 14%;
+    border-right: none;
+}
+
+#body{        
+    height: 89%;
+    width: 100%;    
+    overflow: auto;    
+
+    /*background-color: rgba(128, 128, 128, 0.425);*/
+}/*te hace falta darle color de fondo a las filas de datos y ponerle hover, pero evitar que afecte al encabezado, tambien darle una mejor proporción de ancho a las columnas en general tb las proporciones de la img
+     darle forma al btn y ver si puedes centrarlo de otra manera, puesto que creo que el flex de ese div podría estar afectando el desenvolvimiento de la tabla, hacer que los btn de opciones
+     solo esetén visibles cuando hover las filas de datos, y hacer el div para crear, lo de eli solo mostrará un div como login para confirmar la eli, solo que esta vez si tendrá dos botones, aceptar y cancelar este en lugar d ela mini x
+     solo eso queda, porque lo demás concierne cuando se tenga la info...*/
+
+#dataTable{
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+}
+
+#dataRow{
+    border-bottom: 0.5px solid rgb(180, 215, 224);
+}
+
+#dataRow:hover{
+    background-color: #e1e7e983;
+}
+
+td{
+    padding-left: 22px;    
+    height: 35px;
+}
+
+#option{
+    border-radius: 50%;
+    border: 0.5px solid black;
+    margin-right: 7px;
+    height: 30px;
+    width: 30px;
+}
+
+#option:hover{
+    box-shadow: 3px 2px 2px #6f7374c4; 
+}
+
+#footer{
+    display: flex;
+    width: 100%;
+    height: 10%;    
+    justify-content: center;    
+}
+
+#addButton{
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+   
+}
+/*podría ser útil después xD
+background: rgb(235,241,246); 
+background: linear-gradient(180deg, rgba(235,241,246,0.9248074229691877) 0%, rgba(226,226,226,0.9332107843137255) 85%);
+*/
+
+   

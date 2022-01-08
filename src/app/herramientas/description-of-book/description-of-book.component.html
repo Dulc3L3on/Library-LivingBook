@@ -1,0 +1,92 @@
+<div id="description">
+    <div id="left">
+        <div id="image_container">
+            <img style="border:1.7px solid rgba(0, 0, 0, 0.753);border-radius: 50%; height: 270px;width: 270px;" src="assets/portadaEjemplo.jpg"/>
+        </div>
+        <div id="options">
+            <button type="button" (click)="changeStateLike()" style="margin-bottom: 15px;margin-top: -5px;"><i class="bi bi-book-half"></i>I like it</button>
+            <button type="submit" value="Leer/Adquirir"><i class="bi bi-book-half"></i>Leer/<i class="bi bi-bag"></i>Adquirir</button><!--dependerá de si ya lo adquirió o no-->
+            <!--uno de los dos botones se mostrará--><!--o simplemente cambia el texto, en ese caso si tendría que ser un input, por el valor...-->
+        </div>
+
+    </div>
+    <div id="right">
+        <table>
+            <tr>
+                <th colspan="4">
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td id="titleL">
+                    Name:
+                </td>
+                <td id="dataL">
+                    The name
+                </td>
+                <td id="titleR">
+                    Autor:
+                </td>
+                <td id="dataR">
+                    <button>The name</button><!--(click) = "navegarAPaginaAutor()"-->
+                    <input style="display: none;" value="idAutor"/>
+                </td>
+            </tr>
+            <tr>
+                <td id="titleL">
+                    Type:
+                </td>
+                <td id="dataL">
+                    The type
+                </td>
+                <td id="titleR">
+                    Country:
+                </td>
+                <td id="dataR">
+                    The country
+                </td>
+            </tr>
+            <tr>
+                <td id="titleL"><!--será reempleazado por fecha de adquisición-->
+                    Popularity:
+                </td>
+                <td id="dataL">
+                    en estrellitas, a partir del que tenga más...
+                </td>
+                <td id="titleR">
+                    Publication:
+                </td>
+                <td id="dataR">
+                    The date
+                </td>                             
+            </tr>                   
+            <tr>
+                <td id="titleL"><!--será reemplazado por tiempo de lectura-->
+                    Price:
+                </td>
+                <td id="dataL">
+                    el costo
+                </td>
+                <td colspan="2" style="font-weight:600;">
+                    Review
+                </td>                  
+            </tr>
+            <tr>
+                <td colspan="2" ></td>
+                <td colspan="2" rowspan="4">
+                    <textarea rows="7" cols="45" readonly>Solo para lectura...</textarea>
+                </td>
+            </tr>
+           
+        </table>
+    </div>
+</div>
+<hr/>
+<div id="sectionOfComments">
+    <div id="titleComments" style="height: 13%;">
+        <h2 style="font-family: 'Poppins', sans-serif;font-size: 22px;font-weight: 500;">Comments</h2>
+    </div>
+    <div id="comments">
+
+    </div>
+</div>

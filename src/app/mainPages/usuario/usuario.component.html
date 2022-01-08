@@ -1,0 +1,34 @@
+<div id="host"><!--digo yo que será útil xD, quizá si para así interactuar con los comp y darle forma a la página xD-->
+    <div id="header">
+        <div id="box_profileCover">
+            <!--<img id="cover" src="assets/portadaPorDefecto.jpg"/>-->            
+        </div>    
+        <div id="box-photoProfile">            
+            <img id="photo" src="assets/avatar-mujer.jpg"/>
+        </div>
+    </div>   
+    
+    <div id="body">
+        <!--<ng-template>--><!--SI esAutor-->
+            <div id="left">
+
+            </div>
+        <!--</ng-template>-->
+       
+        <div id="right">
+            <div id="preferencias"><!--para establecer el contorno en el que debría dibujarse...-->
+                <!--app-preferencias-->
+            </div> 
+            <div id="autorMenu"><!--recuerda poner el ng-template para mostrarlo cuando se cumpla la condi...-->
+                <button id="myLibrary" class="markup" type="button" (click)="navigateTO('myLibrary')">My Library</button>
+                <button id="creations" type="button" (click)="navigateTO('creations')">Creations</button>
+                <button id="statistics" type="button" (click)="navigateTO('statistics')">Statistics</button>
+            </div>
+            <div id="content">
+                <!--con la ruta por defecto (puesta en el routerLink, que tb podría haberse especificado con un redirectTo en el path de MyProfile) ya no se requiere tener aquí la invocación a MiBiblioteca por medio del selector-->
+               <router-outlet></router-outlet><!--cuando quieras poner un router outlet fuera de la raíz (app-component) lo que vayas a mostrar ahí dentro debe especificarse como CHILDREN, de lo contrario, aunque la ruta esté bien no renderizará el comp que le corresp...-->
+            </div>
+        </div>
+    </div>   
+
+</div>

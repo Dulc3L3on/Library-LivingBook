@@ -1,0 +1,46 @@
+<div id="modal">     
+    <form [formGroup] = "loginForm">
+        <div class="contentLog" mat-dialog-content>    
+            <div id="header">
+                <div id="close" style="width: 123%; margin: -30px 0px 20px 6px; padding-left: 80%; border-radius: 7px;"><!--background-color: rgba(234, 239, 243, 0.87);-->
+                    <button type="reset" class="btn-close" (click)="hideMe()"></button><!--data-bs-dismiss="modal"  da error... creo que no importé algo del bootstrap...-->
+                </div> 
+           
+                <p id="title">LOGIN</p><!--no se si al no agregar las etiquetas que indican el contenido del dialogo, puedo recuperar los datos como si no estuviera usando el dialogo...--> 
+            </div>        
+            <div id="body">
+                <table>
+                    <tr>
+                        <td>
+                            <label style="margin-bottom: 15px;">
+                                <div><i class="bi bi-person-fill" style="margin-right: 5px;"></i>username</div>
+                                <input id="input"
+                                type="text" 
+                                formControlName = "username"
+                                placeholder="your username or email"
+                                required/>
+                            </label>
+                        </td>                    
+                    </tr>
+                    <tr>
+                        <label>
+                            <div><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>password</div>
+                            <input id="input"
+                            type="password"
+                            formControlName = "password"
+                            required
+                            style="margin-left: 5px;"/>        
+                        </label>                   
+                    </tr>     
+                </table>       
+
+                <input id="button" type="submit"
+                 value="Login"
+                 [disabled]="loginForm.invalid"
+                 (click) = "logIn()"/>
+                 <p><br/>Are you forgot your password?<br/><a href="./">click here</a></p>
+            </div>                       
+        </div>       
+    </form>    
+</div>    
+

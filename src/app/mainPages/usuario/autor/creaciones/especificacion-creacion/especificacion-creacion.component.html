@@ -1,0 +1,122 @@
+<div id="modal">    
+    <div class="content">      
+        <div id="head">
+            <div id="header" style="width: 100%; margin: -30px 0px 15px -20px; padding-left: 103%; border-radius: 7px;"><!--background-color: rgba(234, 239, 243, 0.87);-->
+                <button type="reset" class="btn-close" (click)="hideMe()"></button>
+            </div> 
+                
+            <p id="title" >Add a new Book</p>                                  
+        </div>      
+            
+            <div id="body">
+                <div id="left">
+                    <div id="setImage">
+                        <button type="button" (click)="spreadOutClickImage()">
+                            <img id="photoPreview" style="height: 210px;max-width: 210px;border: 2.7px dashed grey;" src="assets/addCoverBook.jpg"/><!--que ellos hagan la imagen de ese tamaño :v xD-->
+                            <input id="fileButton" type="file" accept="image/png, image/jpeg, image/jpg" style="display: none;"/>                   
+                        </button>
+                        
+                    </div>
+                    <div id="setPDF">
+                       
+                        <!--en este caso se permitirá previsualizar con un jFrame, que estaba pensando sería bueno se abriera en otra pestaña, imagino que será un proceso simi que con la img, es decir, crear un blob y luego cargar eso, en este caso pienso que un JFrame será útil, o quizá haya otra cosa para mostrar la prev, si no es muy compleja, podrías utilizarla xD, cabe resaltar que este componente, será el mismo que se utilice cuando el usuario decida leer libros...-->
+                            <table style="margin-left: -3px;margin-top: -5px;">
+                                <tr>
+                                    <td style="width: 17%;font-size: 16px;">
+                                        <button (click)="spreadOutClickPDF()" style="background-color:whitesmoke; height:28px; width: 28px; border-radius: 50%;border: 0.5px solid black;padding-left: 5px;">
+                                            <i class="bi bi-file-earmark-plus" style="margin-right: 7px;"></i>
+                                        </button>                                        
+                                    </td>
+                                    <td id="cellToSee" style="width: 17%;display: none;">
+                                        <!--(click)="convertToBase64()"-->
+                                        <button id="seeThePDF" (click)="convertToBase64()" style="background-color:whitesmoke; height:28px; width: 28px; border-radius: 50%;border: 0.5px solid black;padding-left: 4px;">
+                                           <i class="bi bi-eye-fill" style="margin-right: 7px;"></i>
+                                        </button>                                        
+                                    </td>
+                                    <td style="width: 66%;">
+                                        <!--en este input se colocará el CLICK para abrir el previsualizador-->
+                                        <input style="width: 100%;font-size: 14px;" type="text" id="nameOfPDF" placeholder="PDF's name'll apears here" readonly/>
+                                    </td>
+                                   <!--<td *ngIf="pdfProcesado">
+                                        <iframe [src]="pdfProcesado"></iframe>
+                                    </td>--> <!--creado para ver si sí muestra base64, hasta donde sé, si lo hace xD-->
+                                </tr>
+                            </table>
+                            <input id="pdfButton" type="file" accept="application/pdf" style="display: none;"/>                   
+                       
+                    </div>
+                    <table id="importantData" cellpadding="3px">
+                        <tr>
+                            <td id="Col1" style="width: 50px;height: 20px;">ID:</td>
+                            <td style="height: 20px;"><input style="background-color: transparent;border: none;"type="text" value="elID" readonly/></td>
+                        </tr>
+                        <tr>
+                            <td id="Col1" style="width: 50px;height: 20px;">Date:</td>
+                            <td style="height: 20px;"><input style="background-color: transparent;border: none;" type="date" value="la fecha" readonly/>                        </td>
+                        </tr>                        
+                    </table>                    
+                </div>
+                
+                <form>
+                    <div id="right">                    
+                        <table>       
+                            <tr>
+                                <td id="C1">
+                                    * name:
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="book's name" required/><!--[(ngModel)]="username"-->
+                                </td>              
+                            </tr>
+                            <tr>                    
+                                <td id="C1">
+                                    * type:
+                                </td>
+                                <td>
+                                    <select id="select" required>
+                                        <option selected disabled>Select the book's type</option>
+                                        <option value="type">Bibliography</option>
+                                        <option value="type">Cientifics</option>
+                                        <option value="type">Classic</option>
+                                        <option value="type">Comedy</option>
+                                        <option value="type">Cooking</option>
+                                        <option value="type">Drama</option>
+                                        <option value="type">Horror</option>
+                                        <option value="type">Infantile</option>
+                                        <option value="type">Juvenile</option>
+                                        <option value="type">Romance</option>
+                                        <option value="type">Thriller</option>
+                                        <option value="type">Fiction science</option>
+                                    </select>        
+                                </td>                        
+                            </tr>
+                            <tr>
+                                <td id="C1">
+                                    * price: 
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="00000000" min="0"/>   
+                                </td>                        
+                            </tr>         
+                            <tr>
+                                <td id="C1" colspan="2">
+                                    * review
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" colspan="2">
+                                    <textarea id="reseña" rows="5" cols="31" placeholder="Write the review about your book."></textarea>
+                                </td>
+                            </tr>                  
+                        </table>
+                    <!--creo que el submit tb debe ir dentro del form :v, tengo que hacer que se englobe :v-->         
+                    </div>
+
+                    <div id="options">
+                        <input id="option" type="submit" value="Cancel"/>
+                        <input id="option" class="addBook" type="reset" value="Done"/>   
+                    </div>
+                </form> 
+            </div>           
+        </div>    
+</div>

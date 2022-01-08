@@ -1,0 +1,18 @@
+<div id="host"><!--(click)="implicitHiddenSideNav($event)">-->    
+    <div id="someOfHead">
+        <a (click)="showSideNavBar()"><img id="imgPerfil" style="height: 55px; max-width: auto; margin-right: 20px; border-radius: 50%;"  src="assets/avatar-mujer.jpg"/></a>
+        <img id="logo-banner" width="95" alt="LivingBook-logo" src="assets/LivingBook-Logo-transparente.png"/> 
+    </div>
+    <div id="modal">
+        <div id="space"></div>
+        <ul>
+            <li><a routerLink="MyProfile/myLibrary">My profile</a></li><!--O en lugar de colocar de una vez la ruta hija (la que es por defecto, bien hubieras podido colocar redirectTo como parám de la ruta MyProfile y así evutar que abajito se muestre la ruta real xD, aunque no se si con el redirectTo, se puede enviar paráms, como por ej el ID del usuario que en mi caso necesito enviar...)-->
+            <li><a routerLink="BookStore">Book Store</a></li>
+            <li><a routerLink="News">News</a></li>            
+            <li><a routerLink="ProfileConfiguration">Configuration</a></li>
+        </ul>
+    </div>        
+</div>
+
+<!--bueno, te hace falta agregar el div que tendrá parte del header [como youtube] que tiene la foto de perfil (que tb tendrá el evt del click para cb el estado de la var, eso quiere decir que ese mini método tendrás que pasarlo al servicio de este sideNav, para que así estén de acuerdo las var, de tal forma que el html de app y side invoquen al mismo método, en el caso de app, al inyectar la dep del servicio... :D xD) y el logo para que pueda volver a ocultar al sideBar y hacer lo que corresp con css para que esté bien ubucado, imagino que tendrás que app margenes o algo así xD-->
+<!--TIENES QUE VER LO DE el establecimiento de las funciones, porque empezaste a jugar xD, y no supiste que hacer con lo de la viarable, es decir si dejarla enel appcomponent y luego pasarla a la función del servicio o dejarla en el servicio y modificarla ahí mismo xD, la cuestión es que ya está lo gráfico y solo debes ver eso de los clicks xD, y del click fuera del div-->

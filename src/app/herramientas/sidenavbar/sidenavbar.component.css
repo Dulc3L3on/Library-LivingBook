@@ -1,0 +1,52 @@
+:host{
+    display: flex;
+    background: rgba(63, 63, 63, 0.582);    
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vw;
+    width: 100vw;
+    transition: all .5s;     
+    z-index: 1;
+}
+
+#host{
+    display: flex;
+    flex-direction: column;
+}
+
+#someOfHead{
+    display: flex;
+    height: 70px;
+    width: 330px;
+    background-color: #F5F6FA;
+    padding-left: 20px;
+    align-items: center;
+}
+
+#modal{
+    width: 330px;
+    height: 860px;
+    background-color: aliceblue;   
+    font-family: 'Raleway';
+    font-size: 20px;    
+}
+
+li{
+    display: flex;
+    width: 330px;
+    height: 45px;
+    margin: 0px 0px 3px -32px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+
+
+#space{
+    height: 50px;
+}
+
+li:hover{
+    background-color: rgba(85, 85, 85, 0.144);
+}

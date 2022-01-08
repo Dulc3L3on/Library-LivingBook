@@ -1,0 +1,83 @@
+
+<div id="host">    
+    <div id="header">
+        <select>
+            <option value="books" (click)="changeTypeOfSearch()" selected>Books</option>
+            <option value="autors" (click)="changeTypeOfSearch()">Autors</option>
+        </select>
+    </div>
+    <div id="body">
+        <div id="leftOptions">
+            <ul>
+                <ng-template [ngIf] ="areSearchABook">
+                    <li><input name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()"/>+ popular</li><!--esta opción no tiene que estar en el filtro de miBiblioteca, sería como trabajo en vano...-->
+                    <li><input id="radioOfDate" name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()" checked="true"/>date of publication</li><!--MiBiblioteca, Tienda-->
+                        <ng-template [ngIf] ="isFilterThatDate">
+                            <div id="calendars">
+                                <span>Since: </span>
+                                <input id="since" type="date" required/>
+                                <span><br/>To: </span>
+                                <input id="to" type="date" required/>
+                            </div>                        
+                        </ng-template>
+                    <li><input name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()"/>Acquisition's date</li><!--MiBiblioteca-->
+                    <li><input name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()"/>alphabet order</li>                
+                </ng-template>            
+    
+                <ng-template [ngIf] ="!areSearchABook">
+                    <li><input name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()"/>+ popular</li><!--Tienda-->                    
+                    <li><input id="radioOfDate" name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()" checked="true"/>date of union</li><!--Tienda, MiBiblioteca-->
+                        <ng-template [ngIf] ="isFilterThatDate">
+                            <div id="calendars">
+                                <span>Since: </span>
+                                <input id="since" type="date" required/>
+                                <span><br/>To: </span>
+                                <input id="to" type="date" required/>
+                            </div>                        
+                        </ng-template>
+                    <li><input id="radioOfDate" name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()" checked="true"/>Follow-up date</li><!--MiBiblioteca-->
+                    <li><input name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()"/>alphabet order</li>                
+                    <li><input  name="leftCheck" type="radio" (click)="changeTypeOfSearch_Date()"/>favorites</li><!--ngIf ya inició sesión... si no le ha dado a ninguno me gusta entonces se dirá algo así xD-->
+                </ng-template>            
+            </ul>
+        </div>
+        <div id="rightOptions">
+            <ng-template [ngIf] ="areSearchABook">                
+                <select>
+                    <option selected disabled>All categories</option>
+                    <option value="type">Bibliography</option>
+                    <option value="type">Cientifics</option>
+                    <option value="type">Classic</option>
+                    <option value="type">Comedy</option>
+                    <option value="type">Cooking</option>
+                    <option value="type">Drama</option>
+                    <option value="type">Horror</option>
+                    <option value="type">Infantile</option>
+                    <option value="type">Juvenile</option>
+                    <option value="type">Romance</option>
+                    <option value="type">Thriller</option>
+                    <option value="type">Fiction science</option>
+                </select>
+            </ng-template>
+    
+            <ng-template [ngIf] ="!areSearchABook">                
+                <select>
+                    <option selected disabled>All the world</option>
+                    <option value="continent">America</option>
+                    <option value="Bocontinentoks">Africa</option>
+                    <option value="continent">Asia</option>
+                    <option value="continent">Europa</option>
+                    <option value="continent">Oceanía</option>
+                </select>
+            </ng-template>
+            
+        </div>    
+    </div>
+    
+</div>
+
+<!--No voy a add las opciones cuando está en PERFIL puesto que aún no sabes cómo es que se manejan los formularios aquí y por tanto no sabes que tan difícil sería
+trabajar teneiendo un mismo nombre los input, puesto que no estás segura si puede obtnerse el ID del input para así pedir específicamente (lo cual si no estoy mal, 
+se puede hacer en los JSP) dep si está en perfil o no, y además no sabes que tanto deberás add como para saber si la lógica del .ts estará muy amontonada o no
+deplano que si tendrás que crear un filtro para perfil el cual si recibirá una var por medio del ng-content y el doble binding(padre e hijo) para saber si está
+solicitando el perfil propio o el ajeno luego de haber seleccionado a algún autor responsable de alguno de los libros que posee-->
