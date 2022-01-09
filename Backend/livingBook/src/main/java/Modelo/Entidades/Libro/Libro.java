@@ -16,11 +16,13 @@ public class Libro {
      final int IDautor;
      final String fechaPublicacion;
      String reseña;
-     final String tipo;
+     final String tipoDeLibro;
      final String portada;//imagen en base64
      final String archivoPDF;//en base64
      //popularidad; variable
      int cantidadMeGusta;
+     
+     String tipo = "Libro";
 
     public Libro(int ID, String nombre, double precio, int IDautor, String fechaPublicacion, String reseña, 
             String tipo, String portada, String archivoPDF, int cantidadMeGusta) {
@@ -30,7 +32,7 @@ public class Libro {
         this.IDautor = IDautor;
         this.fechaPublicacion = fechaPublicacion;
         this.reseña = reseña;
-        this.tipo = tipo;
+        this.tipoDeLibro = tipo;
         this.portada = portada;
         this.archivoPDF = archivoPDF;
         
@@ -78,7 +80,7 @@ public class Libro {
     }
 
     public String getTipo() {
-        return tipo;
+        return tipoDeLibro;
     }
 
     public String getPortada(){

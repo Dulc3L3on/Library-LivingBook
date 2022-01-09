@@ -17,6 +17,8 @@ public class Configuracion {
     private String fotoPerfil;//en Base64
     private String portada;//en Base64, sin importar que decida que sea un gradiente o una imagen, si es gradiente pienso enviar el color así normal xD
     private List<String> preferencias;//si no se logra enviar el Array desde angular hacia aquí, tendrá que pasarse a un String[]
+    
+    private String tipo = "Configuracion_Cuenta";
 
     public Configuracion(int IDUsuario, String tema, String fotoPerfil, String fotoPortada, List<String> preferencias) {
         this.IDUsuario = IDUsuario;

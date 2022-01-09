@@ -118,7 +118,7 @@ public class Herramienta {
             InputStream streamReader = getClass().getResourceAsStream((genero.equals("femenino"))?"/avatar-mujer.jpg":"/avatar-hombre.jpg");
             byte[] imageBytes = IOUtils.toByteArray(streamReader);
             base64 = Base64.getEncoder().encodeToString(imageBytes);
-            System.out.println(base64);
+            System.out.println("base64 imagen por defecto: "+base64);
         }catch(IOException e){
             System.out.println(e.getMessage());
             e.printStackTrace();

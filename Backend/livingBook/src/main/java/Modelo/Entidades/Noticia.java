@@ -15,13 +15,15 @@ public class Noticia {
     private final Date fechaPublciacion;
     private final int IDCreador;
     private String asunto;
-    private String tipo;//no le puse final a estos últimos 2, por si acaso llegara a permitir la edición...
+    private String tipoDeNoticia;//no le puse final a estos últimos 2, por si acaso llegara a permitir la edición...
+    
+    private final String tipo = "Noticia";
 
     public Noticia(Date fechaPublciacion, int IDCreador, String asunto, String tipo) {
         this.fechaPublciacion = fechaPublciacion;
         this.IDCreador = IDCreador;
         this.asunto = asunto;
-        this.tipo = tipo;
+        this.tipoDeNoticia = tipo;
     }
 
     public Date getFechaPublciacion() {
@@ -37,7 +39,7 @@ public class Noticia {
     }
 
     public String getTipo() {
-        return tipo;
+        return tipoDeNoticia;
     }
     
     

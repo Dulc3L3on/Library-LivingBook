@@ -11,4 +11,7 @@ package Modelo.Entidades;
  */
 public class Autenticacion {
     
+    
+    private final String tipo = "Autenticacion";//no creo que aquí en Java sirva el get para este dato xD
+    
 }

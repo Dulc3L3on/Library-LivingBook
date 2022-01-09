@@ -33,7 +33,12 @@ public class ManejadorDB {
         }
 
         public static Connection darConexion() {
-            return (Connection) ((connectionDB == null)?(connectionDB = new ManejadorDB()):connection);          
+            if (connectionDB == null) {
+                connectionDB = new ManejadorDB();
+            }
+            return connection;
+            
+            //return (ManejadorDB) ((connectionDB == null)?(connectionDB = new ManejadorDB()):connection);          
         }        
         
         public Connection getConnection() {

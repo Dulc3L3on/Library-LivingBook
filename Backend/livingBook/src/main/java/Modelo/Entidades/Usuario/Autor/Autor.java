@@ -16,6 +16,8 @@ public class Autor extends Usuario{
      String descripcion;
      int cantidadMeGusta = 0;   
      
+     String tipo = "Autor";
+     
      public Autor(Usuario usuario, String fechaDecision, String descripcion, int cantidadMeGusta){
          this(usuario.getID(), usuario.getNombre(), usuario.getApellido(), usuario.getUsername(), usuario.getGenero(),
                  usuario.getBirthday(), usuario.getPaisOrigen(), usuario.getPassword(), usuario.getCorreo(), 

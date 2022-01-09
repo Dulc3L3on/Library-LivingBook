@@ -13,6 +13,8 @@ public class AutorSeguido extends Autor{//en realidad solo va a ser útil para a
     private int meGusta;//no había boolean por eso es int xD
     private final String seguidoDesde;
     
+    String tipo = "Autor_Seguido";
+    
     public AutorSeguido(Autor autor, int meGusta, String seguidoDesde){
         this(autor.getID(), autor.getNombre(), autor.getApellido(), autor.getUsername(), autor.getGenero(), autor.getBirthday(),
                 autor.getPaisOrigen(), autor.getPassword(), autor.getCorreo(), autor.getNumeroTelefono(), autor.getNumeroTarjeta(),

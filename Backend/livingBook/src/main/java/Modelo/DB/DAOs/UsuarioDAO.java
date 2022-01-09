@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -46,7 +47,8 @@ public class UsuarioDAO {//en este caso usuario = lector...
      
      public void crearUsuario(Usuario usuario) throws SQLException{
          try ( //para exe, despues de exe login y signup correctamente
-             PreparedStatement statement = conexion.prepareStatement(CREAR)) {
+             PreparedStatement statement = conexion.prepareStatement(CREAR, 
+                     Statement.RETURN_GENERATED_KEYS) ) {
             statement.setString(1, usuario.getNombre());
             statement.setString(2, usuario.getApellido());
             statement.setString(3, usuario.getUsername());
@@ -60,6 +62,11 @@ public class UsuarioDAO {//en este caso usuario = lector...
             statement.setInt(11, usuario.getEsAutor());
              
             statement.executeUpdate();
+            
+           ResultSet resultado = statement.getGeneratedKeys();//a menos que no sea de tipo sqlException, no se catcheará el error al retornar la clave en el catch del servlet, sino pues se informará de esto con su respectivo msje xD           
+           resultado.first();
+               
+           usuario.setID(resultado.getLong(1));
          
             if(usuario instanceof Autor){
                  autorDAO.crearAutor(usuario);

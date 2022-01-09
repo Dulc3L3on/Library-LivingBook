@@ -16,6 +16,8 @@ public class Obra {
     private final Libro libro;//serpa lbro o libro adquirido si es que la búsqueda es para tienda o miBiblioteca, respectivamente
     private final Autor autor;//será autor o autorSeguido, según lo de arriba 
 
+    private final String tipo = "Obra";
+    
     public Obra(Libro libro, Autor autor) {
         this.libro = libro;
         this.autor = autor;

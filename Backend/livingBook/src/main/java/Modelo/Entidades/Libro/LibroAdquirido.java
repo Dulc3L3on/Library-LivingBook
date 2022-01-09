@@ -13,6 +13,8 @@ public class LibroAdquirido extends Libro{
     private int tiempoLectura;
     private final String fechaAdquisicion;
     private int meGusta;//eqq qboolean
+    
+    String tipo = "Libro_Adquirido";
 
     public LibroAdquirido(int ID, String nombre, double precio, int IDautor, String fechaPublicacion, String reseña, 
             String tipo, String portada, String archivoPDF, int cantidadMeGusta, int tiempoLectura, 

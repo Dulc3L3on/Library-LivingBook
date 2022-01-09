@@ -28,7 +28,7 @@ public class ConfiguracionDAO {
     //y por lo tanto de esta manera se evitaría tener que cb los datos en más de un lugar...
     
     private final String BUSCAR_CONFIGURACION_CUENTA = "SELECT * FROM Configuracion WHERE IDUsuario = ?";
-    private final String CREAR_CONFIGURACION_INICIAL = "INSERT INTO Configuracionn (IDUsuario, fotoPerfil) "
+    private final String CREAR_CONFIGURACION_INICIAL = "INSERT INTO Configuracion (IDUsuario, fotoPerfil) "
                                                                                                + "VALUES (?,?)";
     private final String ACTUALIZAR_CONFIGURACION_CTA = "UPDATE Configuracion SET tema = ?, fotoPerfil = ?, "
                                                                                                      + "fotoPortada = ?, preferencias = ? WHERE IDUsuario = ?";
@@ -47,7 +47,9 @@ public class ConfiguracionDAO {
     public Configuracion buscarConfiguracionDeLaCuenta(int IDUsuario){
         Configuracion configuracionCuenta = null;
         
-        try(PreparedStatement statement = conexion.prepareStatement(BUSCAR_CONFIGURACION_CUENTA)){
+        try(PreparedStatement statement = conexion.prepareStatement(BUSCAR_CONFIGURACION_CUENTA,                 
+                     ResultSet.TYPE_SCROLL_SENSITIVE, 
+                     ResultSet.CONCUR_UPDATABLE)){
               statement.setInt(1, IDUsuario);  
             
               ResultSet resultado = statement.executeQuery();                           

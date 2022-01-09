@@ -26,6 +26,8 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
      String fechaUnion;//mejor que sean string xD
      int esAutor;//no lo cambiarás a boolean???
      Configuracion configuracionCuenta;
+     
+     String tipo = "Usuario";//puesto que no sé como averiguar qué tipo envié desde aquí al enviar el resultado de la petición [puesto que Angular lo recibe como Object [no func instanceof, creo que era obvi xD, ni la función comparativa con tipo de retorno => is Tipo...
 
     public Usuario(int ID, String nombre, String apellido, String username, String genero, String birthday,
             String paisOrigen, String password, String correo, int numeroTelefono, int numeroTarjeta, 
@@ -45,6 +47,10 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
         this.esAutor = esAutor;
     }    
         
+    public void setID(long ID){
+        this.ID = (int) ID;
+    }
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

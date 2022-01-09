@@ -12,11 +12,11 @@ import Modelo.Entidades.Usuario.Usuario;
 import Modelo.Herramientas.JSON.Converter;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -28,6 +28,11 @@ public class Signin_servlet extends HttpServlet {
     private final Converter converterUsuario = new Converter(Usuario.class);
     private final Converter converterAutor = new Converter(Autor.class);    
     private final Converter converterResultado = new Converter(Estatus.class);    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response){
+    }
+    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -48,10 +53,14 @@ public class Signin_servlet extends HttpServlet {
             response.getWriter().append((tipoDeUsuario.equals("Usuario"))?
                     converterUsuario.toJson(usuarioDAO.buscarUsuario(elUsuario.getUsername(), elUsuario.getPassword())):
                     converterAutor.toJson(usuarioDAO.buscarUsuario(elUsuario.getUsername(), elUsuario.getPassword())));
-        }catch(SQLException sqlE){
+        }catch(SQLException sqlE){//no sería mejor un Exception, para atrapar todos los posibles... aunque creo que por el hecho de que únicamente podrían ser generados por var propias de sql, solo se requiere este tipo de exception xD
             System.out.println("Error: at tried INSERT an  "+tipoDeUsuario.toUpperCase()+"\n"+sqlE.getMessage());
              response.getWriter().append(converterResultado.toJson
                         (new Estatus("error", "Error del servidor\n imposible realizar el registro\n intente de nuevo")));
+        }catch(IOException e){
+            System.out.println("Error: of type IOException  "+tipoDeUsuario.toUpperCase()+"\n"+e.getMessage());
+             response.getWriter().append(converterResultado.toJson
+                        (new Estatus("error", "Error del servidor\n imposible enviar o recibir resultados")));
         }
     }
 }
