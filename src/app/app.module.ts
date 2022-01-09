@@ -10,13 +10,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SidenavbarComponent } from './herramientas/sidenavbar/sidenavbar.component';
 import { MainPagesModule } from './mainPages/main-pages.module';
 import { AutenticacionUsuarioModule } from './mainPages/usuario/autenticacion-usuario/autenticacion-usuario.module';
-import { ErrorAdviseComponent } from './error/error-advise/error-advise.component';
 
 @NgModule({
   declarations: [
     AppComponent,           
-    SidenavbarComponent, 
-    ErrorAdviseComponent,    
+    SidenavbarComponent,     
   ],
   imports: [
     BrowserModule,

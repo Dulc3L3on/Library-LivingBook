@@ -5,9 +5,11 @@ export class AutorSeguido extends Autor{
     meGusta:number = 0;
     seguidoDesde!:String;
 
-    constructor(nombre:String, apellido:String,username:String, genero:String,
-        birthday:String, paisOrigen:String, password:String, correo:String, numeroTelefono:number,
-        numeroTarjeta:number, descripcion:String){//y hasta estoy pensando que como este obj solo se crerá al recibirse una lista desde el backend, es decir no se creará "explícitamente" aquí, no tendría porqué tener un cnstrct, pero como hereda entonces lo dejé... por eso no creo que se requiera el parám de #MeGusta porque se obtendrá directamten de la asignación (=) del obj obtenido por medio del backend...
+    override tipo:string = "Autor_Seguido";
+
+    constructor(nombre:string, apellido:string,username:string, genero:string,
+        birthday:string, paisOrigen:string, password:string, correo:string, numeroTelefono:number,
+        numeroTarjeta:number, descripcion:string){//y hasta estoy pensando que como este obj solo se crerá al recibirse una lista desde el backend, es decir no se creará "explícitamente" aquí, no tendría porqué tener un cnstrct, pero como hereda entonces lo dejé... por eso no creo que se requiera el parám de #MeGusta porque se obtendrá directamten de la asignación (=) del obj obtenido por medio del backend...
         
         super(nombre, apellido, username, genero, birthday, paisOrigen, password,
             correo, numeroTelefono, numeroTarjeta, descripcion);

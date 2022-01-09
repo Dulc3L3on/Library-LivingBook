@@ -2,13 +2,15 @@ import { ConfiguracionCuenta } from "src/objetos/ConfiguracionCuenta";
 import { Usuario } from "../Usuario";
 
 export class Autor extends Usuario{
-    fechaDecision!:String;
-    descripcion!:String;
-    cantidadMeGusta:number = 0;   
+    fechaDecision!:string;
+    descripcion!:string;
+    cantidadMeGusta:number = 0;  
+    
+    override tipo:string = "Autor";
 
-    constructor(nombre:String, apellido:String,username:String, genero:String,
-        birthday:String, paisOrigen:String, password:String, correo:String, numeroTelefono:number,
-        numeroTarjeta:number, descripcion:String){
+    constructor(nombre:string, apellido:string,username:string, genero:string,
+        birthday:string, paisOrigen:string, password:string, correo:string, numeroTelefono:number,
+        numeroTarjeta:number, descripcion:string){
         super(nombre, apellido, username, genero, birthday, paisOrigen, password,
             correo, numeroTelefono, numeroTarjeta, 1);
 
@@ -16,26 +18,21 @@ export class Autor extends Usuario{
         this.descripcion = descripcion;        
     }
 
-    public set setFechaDecision(fechaDecision:String){
+    public set setFechaDecision(fechaDecision:string){
         this.fechaDecision = fechaDecision;
     }
-
-    public set setDescripcion(descripcion:String){
+    public set setDescripcion(descripcion:string){
         this.descripcion = descripcion;
     }
-
     public set setCantidadMeGusta(cantidadMeGusta:number){
         this.cantidadMeGusta = cantidadMeGusta;
     }
-
     public get getFechaDecision(){
         return this.fechaDecision;
     }
-
     public get getDescripcion(){
         return this.descripcion;
     }
-
     public get getCantidadMeGusta(){
         return this.cantidadMeGusta;
     }

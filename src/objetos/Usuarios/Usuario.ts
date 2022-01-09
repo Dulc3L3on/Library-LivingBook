@@ -1,24 +1,28 @@
 import { ConfiguracionCuenta } from "../ConfiguracionCuenta";
+import { SuperObject } from "../SuperObject";
 
-export class Usuario{
+export class Usuario extends SuperObject{
     ID!:number;
     nombre!:String;
-    apellido!:String;
-    username!:String;
-    genero!:String;
-    birthday!:String;
-    paisOrigen!:String;
-    password!:String;
-    correo!:String;
+    apellido!:string;
+    username!:string;
+    genero!:string;
+    birthday!:string;
+    paisOrigen!:string;
+    password!:string;
+    correo!:string;
     numeroTelefono!:number;
     numeroTarjeta!:number;
-    fechaUnion!:String;
+    fechaUnion!:string;
     esAutor!:number;
     configuracionCuenta:ConfiguracionCuenta|null;
 
-    constructor(nombre:String, apellido:String,username:String, genero:String,
-        birthday:String, paisOrigen:String, password:String, correo:String, numeroTelefono:number,
+    override tipo:string = "Usuario";
+
+    constructor(nombre:string, apellido:string,username:string, genero:string,
+        birthday:string, paisOrigen:string, password:string, correo:string, numeroTelefono:number,
         numeroTarjeta:number, esAutor:number){
+        super();
             this.ID = -1;
             this.nombre = nombre;
             this.apellido = apellido;
@@ -38,25 +42,25 @@ export class Usuario{
     public set setID(ID:number){
         this.ID = ID;
     }
-    public set setNombre(nombre:String){
+    public set setNombre(nombre:string){
         this.nombre = nombre;
     }
-    public set setApellido(apellido:String){
+    public set setApellido(apellido:string){
         this.apellido = apellido;
     }
-    public set setUsername(username:String){
+    public set setUsername(username:string){
         this.username = username;
     }
-    public set setGenero(genero:String){
+    public set setGenero(genero:string){
         this.genero = genero;
     }
-    public set setBirthday(birthday:String){
+    public set setBirthday(birthday:string){
         this.birthday = birthday;
     }
-    public set setPassword(password:String){
+    public set setPassword(password:string){
         this.password = password;
     }
-    public set setCorreo(correo:String){
+    public set setCorreo(correo:string){
         this.correo = correo;
     }
     public set setNumeroTelefono(numeroTelefono:number){
@@ -65,7 +69,7 @@ export class Usuario{
     public set setNumeroTarjeta(numeroTarjeta:number){
         this.numeroTarjeta = numeroTarjeta;
     }
-    public set setFechaUnion(fechaUnion:String){
+    public set setFechaUnion(fechaUnion:string){
         this.fechaUnion = fechaUnion;
     }
     public set setEsAutor(esAutor:number){

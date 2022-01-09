@@ -9,6 +9,8 @@ import { AutenticacionUsuarioService } from '../autenticacion-usuario.service';
 import Swal from 'sweetalert2';
 import { repositorioLocalService } from 'src/app/repositorioLocal/repositorioLocal.service';
 import { Router } from '@angular/router';
+import { GeneralToolService } from 'src/app/generalToolService/generalTool.service';
+import { SuperObject } from 'src/objetos/SuperObject';
 
 @Component({
   selector: 'app-sign-up',
@@ -30,7 +32,7 @@ export class SignUpComponent implements OnInit {
     country: new FormControl('Select your native country'),//en el caso de los select, el valor que se envíe en el formControl debe corresp a una de las opciones que tenga decladas, sea que estén habilitadas o no...
     phone: new FormControl(''),
     email: new FormControl(''),
-    tarjeta: new FormControl(null),    
+    tarjeta: new FormControl(null),//se puede enviar null aunque el campo sea number, tel [imagino también app a text, y los demás, del que tengo duda es del tipo file xD]    
   });
 
  constructor(private router:Router,
@@ -87,20 +89,26 @@ export class SignUpComponent implements OnInit {
       this.signUpForm.value.gender, this.signUpForm.value.birthday, this.signUpForm.value.country,
       this.signUpForm.value.password, this.signUpForm.value.email, this.signUpForm.value.phone, 
       ((this.signUpForm.value.tarjeta!=null)?this.signUpForm.value.tarjeta:-1), 0))).subscribe(
-        (resultado:Usuario|Estatus) => {//o mejor uso Object?
-          if(resultado instanceof Usuario || resultado instanceof Autor){//o solo bastará con Usuario? fmmm xD
-             let usuario = ((resultado instanceof Autor)? resultado as Autor: resultado as Usuario);//Se recibe el usuario en la forma corresp
+        (resultado:Usuario|Estatus) => {//de todos modos, setea el resultado como Object :v xD         
+          console.log(resultado);
+          console.log("classType -> "+(resultado as SuperObject).tipo);
+
+          if((resultado as SuperObject).tipo == "Usuario"  || (resultado as SuperObject).tipo == "Autor"){
+            console.log("Usuario devuelto");
+             let usuario = (((resultado as SuperObject).tipo == "Autor")? resultado as Autor: resultado as Usuario);//Se recibe el usuario en la forma corresp
              this.repositorioLocalService.setUsuario(((usuario.esAutor == 0)?"Lector":"Autor"), usuario);//se guarda en el almacenamiento
-             this.router.navigate(["Bookstore"]);
+             this.router.navigate(["BookStore"]);
             //se redirige con la sesión iniciada..
 
           }else{
-            let estatus = resultado;//:0, detecta automáticamente que es Estatus, por el hecho de estar en un else :0
+            console.log("Estatus devuelto");
+            //si no funciona, deplano se tendrá que crear un objeto DUmmy como lo hizo Marcos para que así permita la asignación; Será el problema solo si sucede después de haber arreglado lo del backend en general xD [DB jsjsj]
+            let estatus = resultado as Estatus;//:0, detecta automáticamente que es Estatus, por el hecho de estar en un else :0
 
             Swal.fire({
               icon: 'error',
-              title: resultado.getTipo,
-              text: resultado.getContenido,
+              title: estatus.getTipo,
+              text: estatus.getContenido,
               //hay que ver cómo hizo o en la página o un tuto xD, lo del sweet :v 
             })
           }

@@ -10,6 +10,8 @@ export class LibroAdquirido extends Libro{
     fechaAdquisicion!:String;
     meGusta!:number;
 
+    override tipo:string = "Libro_Adquirido";
+
     constructor(ID:number, nombre:String, precio:number, IDAutor:number,
         fechaPublicacion:number, reseña:String, tipo:String, portada:String,
         archivoPDF:String, cantidadMeGusta:number,

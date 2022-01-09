@@ -25,7 +25,7 @@ export class AutenticacionUsuarioService {
     let formData = new FormData();
     formData.append(((usuario instanceof Autor)?"Autor":"Usuario"), JSON.stringify(usuario));
     
-    return this.httpClient.post<Usuario|Estatus>(this.API_URL_BASE+"Signin_Servlet", formData); 
+    return this.httpClient.post<Usuario|Estatus>(this.API_URL_BASE+"Signin_servlet", formData); 
   }
 
   /*obtainUser(credenciales:Autenticacion):Observable<Usuario>{
