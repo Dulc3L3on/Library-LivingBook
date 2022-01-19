@@ -1,17 +1,24 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <a (click)="showSideNavBar()"><img id="imgPerfil" style="height: 55px; max-width: auto; margin-right: 20px; border-radius: 50%;"  src="assets/avatar-mujer.jpg"/></a>
+  <ng-template [ngIf]="getUsuario!=null">
+    <a (click)="showSideNavBar()"><img id="imgPerfil" style="height: 55px; max-width: auto; margin-right: 20px; border-radius: 50%;"  src="{{getProfile()}}"/></a>  
+  </ng-template>  
   <img id="logo-banner" width="95" alt="LivingBook-logo" src="assets/LivingBook-Logo-transparente.png"/> 
     <div class="menuOptions">
-      <div id="beforeLogin" style="display: flex; flex-direction: row; width: auto;">
-        <button class="noBoton"> <!--(click)="setComponentDialog('login')"--><a routerLink="login">login</a></button>
-        <button class="noBoton btn-grad"><!--(click)="setComponentDialog('signup')"--><a routerLink="signup">sign up</a></button> 
-      </div>                
-      <div id="afterLogin" style="display: flex; flex-direction: row; width: auto; margin-left: 35px;">
-        <button id="iconButton" (click)="this.marcarIcono[0] = (this.marcarIcono[0] == '')?'-fill':'';"><i class="bi bi-bell{{marcarIcono[0]}}"></i></button><!--algo he de haber colocado mal xD, pero la logica de este click debería ir en un appService...-->
-        <button id="iconButton"><i class="bi bi-door-open"></i></button>
-      </div>      
+      <ng-template [ngIf]="getUsuario==null">
+        <div id="beforeLogin" style="display: flex; flex-direction: row; width: auto;">
+          <button class="noBoton"> <!--(click)="setComponentDialog('login')"--><a routerLink="login">login</a></button>
+          <button class="noBoton btn-grad"><!--(click)="setComponentDialog('signup')"--><a routerLink="signup">sign up</a></button> 
+        </div>                
+      </ng-template>
+      
+      <ng-template [ngIf]="getUsuario!=null">
+        <div id="afterLogin" style="display: flex; flex-direction: row; width: auto; margin-left: 35px;">
+          <button id="iconButton" (click)="this.marcarIcono[0] = (this.marcarIcono[0] == '')?'-fill':'';"><i class="bi bi-bell{{marcarIcono[0]}}"></i></button><!--algo he de haber colocado mal xD, pero la logica de este click debería ir en un appService...-->
+          <button id="iconButton"><i class="bi bi-door-open"></i></button>
+        </div>      
+      </ng-template>      
     </div>  
     
     <ng-template [ngIf] = "getStateOfShowingNavBar()">

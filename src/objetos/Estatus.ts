@@ -1,8 +1,8 @@
 import { SuperObject } from "./SuperObject";
 
 export class Estatus extends SuperObject{
-    private tipoDeEstatus:string;
-    private contenido:string;
+    tipoDeEstatus:string;
+    contenido:string;
     
     override tipo:string = "Estatus";
 
@@ -11,12 +11,5 @@ export class Estatus extends SuperObject{
 
         this.tipoDeEstatus = tipo;
         this.contenido = contenido;
-    }
-
-    public get getTipo(){
-        return this.tipoDeEstatus;
-    }
-    public get getContenido(){
-        return this.contenido
-    }
+    }  
 }

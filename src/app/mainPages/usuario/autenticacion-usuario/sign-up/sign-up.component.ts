@@ -91,12 +91,12 @@ export class SignUpComponent implements OnInit {
       ((this.signUpForm.value.tarjeta!=null)?this.signUpForm.value.tarjeta:-1), 0))).subscribe(
         (resultado:Usuario|Estatus) => {//de todos modos, setea el resultado como Object :v xD         
           console.log(resultado);
-          console.log("classType -> "+(resultado as SuperObject).tipo);
+          console.log("classType of resultado -> "+(resultado as SuperObject).tipo);
 
           if((resultado as SuperObject).tipo == "Usuario"  || (resultado as SuperObject).tipo == "Autor"){
-            console.log("Usuario devuelto");
+            console.log((resultado as SuperObject).tipo + " devuelto");
              let usuario = (((resultado as SuperObject).tipo == "Autor")? resultado as Autor: resultado as Usuario);//Se recibe el usuario en la forma corresp
-             this.repositorioLocalService.setUsuario(((usuario.esAutor == 0)?"Lector":"Autor"), usuario);//se guarda en el almacenamiento
+             this.repositorioLocalService.setUsuario(((usuario.esAutor == 0)?"Usuario":"Autor"), usuario);//se guarda en el almacenamiento
              this.router.navigate(["BookStore"]);
             //se redirige con la sesión iniciada..
 
@@ -107,13 +107,13 @@ export class SignUpComponent implements OnInit {
 
             Swal.fire({
               icon: 'error',
-              title: estatus.getTipo,
-              text: estatus.getContenido,
+              title: estatus.tipo,
+              text: estatus.contenido,
               //hay que ver cómo hizo o en la página o un tuto xD, lo del sweet :v 
             })
           }
         },
-        (error) => {
+        (error:any) => {
           Swal.fire({
             icon: 'error',
             title: 'Error',

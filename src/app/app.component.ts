@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
+import { Component, OnDestroy} from '@angular/core';
+import { ConfiguracionCuenta } from 'src/objetos/ConfiguracionCuenta';
+import { Autor } from 'src/objetos/Usuarios/Autor/Autor';
+import { Usuario } from 'src/objetos/Usuarios/Usuario';
 import { SidenavbarServiceService } from './herramientas/sidenavbar/sidenavbar-service.service';
 import { AutenticacionUsuarioService } from './mainPages/usuario/autenticacion-usuario/autenticacion-usuario.service';
+import { repositorioLocalService } from './repositorioLocal/repositorioLocal.service';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +14,12 @@ import { AutenticacionUsuarioService } from './mainPages/usuario/autenticacion-u
 export class AppComponent {
   title = 'livingBook';
   marcarIcono:string[]=['',''];//0-> bell, 1-> door  
+  usuario:Usuario|null = null;
     
-  constructor(private dialogo: MatDialog, private servicio_autenticacion: AutenticacionUsuarioService, private servicio_navBar: SidenavbarServiceService){}
-
-  /*setComponentDialog(tipo:string):void{
-    this.servicio_autenticacion.setComponentDialog(tipo, this.dialogo);
-  }*//*no se utilizará angular material porque le cambia de estilo :p*/ 
-
+  constructor(private servicio_autenticacion: AutenticacionUsuarioService,
+              private servicio_navBar: SidenavbarServiceService,
+              private repositorioLocal:repositorioLocalService){}
+  
   /*changeStateOfIcon(esMarcar:string, indice:number){
     this.marcarIcono[indice]=esMarcar;
 
@@ -44,4 +46,30 @@ export class AppComponent {
     return this.servicio_navBar.getShowMe();
   }
 
+  get getUsuario():Usuario|null{
+    console.log("objeto almacenado v")
+    console.log((this.repositorioLocal.getObjeto("Usuario")));//hay que ver si da null o "null"
+    this.usuario = this.repositorioLocal.getUsuario as Usuario;//si no se vuelve a exe cada vez que se muestre esta página, entonces lo add a un método que se exe cada vez que se lea el ng-template del .html...
+    
+    return this.usuario;
+  }
+
+  getProfile():string{    
+    console.log("get profile");    
+    console.log(this.usuario);
+    console.log("foto perfil "+(this.usuario!.configuracionCuenta as ConfiguracionCuenta).fotoPerfil!);    
+    return ((this.usuario!).configuracionCuenta as ConfiguracionCuenta).fotoPerfil!;
+  }
+
+//algo está fallando con el getProfile [imagino que es la interpolación], 
+//y es mejor que getUsuario se reemplazara por un observble, pues se invoca muuuchas veces o se ponga en un mejor lugar, iba a decir que se regresara al cnstruc, pero eso evitaría la actualización de la var usuario, o eso pienso xD
+
+
+  ngOnDestroy():void{
+    this.repositorioLocal.clearStorage();
+  }
+
 }
+
+
+//hay que ver si al almacenar el objeto en la sesión, permanece ahí si no le digo explícitamente que sea "delete" o se borra al cerrarse la sesión [o en este caso el servidor xD]
