@@ -19,7 +19,7 @@
         %>
         
         <%if(true){
-           path =  herramienta.establecerFotoPerfilPorDefecto("femenino");
+           path =  herramienta.establecerImagenPorDefecto("Perfil", "femenino");
         }%>
         
         <img src="<%=path%>" />

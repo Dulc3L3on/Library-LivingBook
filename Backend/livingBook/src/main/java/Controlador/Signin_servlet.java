@@ -51,7 +51,7 @@ public class Signin_servlet extends HttpServlet {
             usuarioDAO.crearUsuario(elUsuario);//por el hecho de que en el servlet se estará enviando estos msjes, sería mejor en los DAO, se use un throws, para así atrapar y tratar aquí los errores... sino aquí jamás llegaría la notificación de error...
             
             response.getWriter().append((tipoDeUsuario.equals("Usuario"))?
-                    converterUsuario.toJson(usuarioDAO.buscarUsuario(elUsuario.getUsername(), elUsuario.getPassword())):
+                    converterUsuario.toJson(usuarioDAO.buscarUsuario(elUsuario.getUsername(), elUsuario.getPassword()))://el buscar el usuario provoca que el usuario que reciba Angular SIEMPRE tenga a configuracionCuenta != null, puesto que al logearse el user tb se usa este método, al igual que cuando se busca a los autores.. xD
                     converterAutor.toJson(usuarioDAO.buscarUsuario(elUsuario.getUsername(), elUsuario.getPassword())));
         }catch(SQLException sqlE){//no sería mejor un Exception, para atrapar todos los posibles... aunque creo que por el hecho de que únicamente podrían ser generados por var propias de sql, solo se requiere este tipo de exception xD
             System.out.println("Error: at tried INSERT an  "+tipoDeUsuario.toUpperCase()+"\n"+sqlE.getMessage());

@@ -24,6 +24,7 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
     private final Connection conexion;
     private final Transformador transformador;
     private final TransformadorDeConjuntos transformadorConjunto;
+    private final ConfiguracionDAO configuracionDAO;
     
     private final String CREAR_AUTOR ="INSERT INTO Autor (IDUsuario, descripcion) VALUES (?,?)";
     private final String BUSCAR_AUTOR = "SELECT Usuario.*, Autor.fechaDeUnion, Autor.descripcion, Autor.cantidadMeGusta "
@@ -35,9 +36,10 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
     private final String ACTUALIZAR_DESCRIPCION_DEL_AUTOR = "UPDATE Autor SET descripcion = ? WHERE IDUsuario = ?";//se empleará si el campo es descripción... o el #MeGustas cambió    
     
     public AutorDAO(){
-     conexion = ManejadorDB.darConexion();
-     transformador = new Transformador();
+     conexion = ManejadorDB.darConexion();     
      transformadorConjunto = new TransformadorDeConjuntos();
+     configuracionDAO = new ConfiguracionDAO();
+     transformador = new Transformador();
    }   
         
     public void crearAutor(Usuario usuario) throws SQLException{//será invocado de ser necesario, luego de haber creado al usuario, puseto que el autor se debe registrar también en su tabla respectiva...
@@ -58,7 +60,7 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
               statement.setInt(1, id);
 
               ResultSet resultado = statement.executeQuery();               
-              autor = transformador.transformarAAutor(usuario, resultado);              
+              autor = transformador.transformarAAutor(usuario, resultado);                        
           }catch(SQLException sqlE){
               System.out.println("Error at tried FIND an author (id)"+ sqlE.getMessage());              
           }              
@@ -73,7 +75,7 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
               statement.setInt(1, id);
 
               ResultSet resultado = statement.executeQuery();               
-              autor = transformador.transformarAAutor(resultado);              
+              autor = transformador.transformarAAutor(resultado);                  
           }catch(SQLException sqlE){
               System.out.println("Error at tried FIND an author (login)"+ sqlE.getMessage());              
           }              
@@ -93,7 +95,7 @@ public class AutorDAO {//acordemos que los string de las query sean descriptivas
               System.out.println("Error at tried find an USER"+ sqlE.getMessage());              
           }              
           return listaDeAutores;
-    }
+    }//el seteado de la configuracionCTA de este y de la búsqueda individual se hace en el transformador...
     
     public boolean actualizarAutor(Autor autor){//Será invocado por el método para actualizar usuario, puesto que no se buscará cual de los campos si cambio, para enviar solo esos a la DB, sino que serán enviados todos independientemente de que hayan sido actualizados o no...
         try(PreparedStatement statement = conexion.prepareStatement(ACTUALIZAR_DESCRIPCION_DEL_AUTOR)){

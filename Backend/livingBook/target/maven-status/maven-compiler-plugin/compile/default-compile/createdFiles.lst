@@ -7,6 +7,7 @@ Controlador/SigninServlet.class
 Modelo/Entidades/Usuario/Usuario.class
 Controlador/LoginServlet.class
 Modelo/DB/DAOs/NoticiaDAO.class
+Modelo/Entidades/ConfiguracionCuenta.class
 Modelo/DB/DAOs/ConfiguracionDAO.class
 Modelo/Herramientas/Casteador.class
 Modelo/Entidades/Estatus.class
@@ -23,7 +24,6 @@ Modelo/DB/DAOs/PopularidadDAO.class
 Modelo/Entidades/Libro/LibroAdquirido.class
 Controlador/Signin_servlet.class
 Modelo/DB/ManejadorDB.class
-Modelo/Entidades/Configuracion.class
 Modelo/Entidades/Usuario/Autor/Autor.class
 Modelo/Entidades/Autenticacion.class
 Modelo/DB/DAOs/AutoresSeguidosDAO.class

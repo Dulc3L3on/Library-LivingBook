@@ -5,6 +5,7 @@
  */
 package Modelo.Herramientas;
 
+import jakarta.servlet.http.Part;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -88,9 +91,10 @@ public class Herramienta {
      }
      
      public ArrayList<String> transformarCadenaALista(String cadena, String indicadorSeparacion){
-         String[] listaDeLaCadena = cadena.split(indicadorSeparacion);        
+         //la cadena nunca será null :v, porque enviaré un texto en lugar de dejarlo vacío, con el fin de que esta var aparezca en el JSON [puesto que creo que cuando el content es null no se add a los JSON]
+            String[] listaDeLaCadena = cadena.split(indicadorSeparacion);        
          
-         return transformarArregloALista(listaDeLaCadena);
+            return transformarArregloALista(listaDeLaCadena);            
      }
      
      public ArrayList<String> transformarArregloALista(String[] arreglo){
@@ -111,11 +115,11 @@ public class Herramienta {
          return laCadena;
      }
      
-     public String establecerFotoPerfilPorDefecto(String genero){
-         String base64="";       
+     public String retornarBase64(InputStream streamDeRecursoAConvertir){
+        String base64="";       
         
         try{
-            InputStream streamReader = getClass().getResourceAsStream((genero.equals("femenino"))?"/avatar-mujer.jpg":"/avatar-hombre.jpg");
+            InputStream streamReader = streamDeRecursoAConvertir;
             byte[] imageBytes = IOUtils.toByteArray(streamReader);
             base64 = Base64.getEncoder().encodeToString(imageBytes);
             System.out.println("base64 imagen por defecto: "+base64);
@@ -125,6 +129,25 @@ public class Herramienta {
             return null;//no tengo algo pensado para tratar con eso :v, así que espero no de error xD
         }         
         return "data:image/png;base64,"+base64;
+     }
+     
+    public String establecerImagenPorDefecto(String tipoImagen, String genero){
+         InputStream streamReader = getClass().getResourceAsStream(//este getClass.getResources es para guardar la img en la carpeta resources, pero creo que debe hacerse en el contexto del servlet para que Angular pueda localizar la dirección...
+                 ((tipoImagen.equals("Perfil"))
+                         ?((genero.equals("Female"))?"/avatar-mujer.jpg":"/avatar-hombre.jpg")
+                         :"/portadaPorDefecto.jpg"));                    
+          
+         return this.retornarBase64(streamReader);                  
     }
+     
+       private String getFileName(final Part part) {        
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                    content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    } 
      
 }

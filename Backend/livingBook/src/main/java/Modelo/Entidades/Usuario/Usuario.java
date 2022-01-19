@@ -5,7 +5,7 @@
  */
 package Modelo.Entidades.Usuario;
 
-import Modelo.Entidades.Configuracion;
+import Modelo.Entidades.ConfiguracionCuenta;
 
 /**
  *
@@ -25,7 +25,7 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
      int numeroTarjeta;
      String fechaUnion;//mejor que sean string xD
      int esAutor;//no lo cambiarás a boolean???
-     Configuracion configuracionCuenta;
+     ConfiguracionCuenta configuracionCuenta;
      
      String tipo = "Usuario";//puesto que no sé como averiguar qué tipo envié desde aquí al enviar el resultado de la petición [puesto que Angular lo recibe como Object [no func instanceof, creo que era obvi xD, ni la función comparativa con tipo de retorno => is Tipo...
 
@@ -81,7 +81,7 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
     
     /*el parámetro será establecido directament por la query que se
     exe justo después de crear el usuario por haberse LOGEADO correctamente*/
-    public void setConfiguracionCuenta(Configuracion configuracionCuenta){
+    public void setConfiguracionCuenta(ConfiguracionCuenta configuracionCuenta){
         this.configuracionCuenta = configuracionCuenta;
     }
 
@@ -137,7 +137,7 @@ public class Usuario {//iba a poner getter para que desde aquí se pudiera envia
         return esAutor;
     } 
     
-    public Configuracion getConfiguracionCuenta(){
+    public ConfiguracionCuenta getConfiguracionCuenta(){
         return configuracionCuenta;
     }    
 }

@@ -13,7 +13,7 @@
 /home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Modelo/Entidades/Autenticacion.java
 /home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Modelo/Entidades/Noticia.java
 /home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Modelo/DB/Seguridad.java
-/home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Modelo/Entidades/Configuracion.java
+/home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Modelo/Entidades/ConfiguracionCuenta.java
 /home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Modelo/Entidades/Libro/LibroAdquirido.java
 /home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Controlador/LibroServlet.java
 /home/phily/Documentos/CarpetaDeEstudios/ProyectosPropios/library/Library-LivingBook/Backend/livingBook/src/main/java/Controlador/Signin_servlet.java

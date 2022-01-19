@@ -67,6 +67,7 @@ public class UsuarioDAO {//en este caso usuario = lector...
            resultado.first();
                
            usuario.setID(resultado.getLong(1));
+             System.out.println("Id usuario creado: "+ usuario.getID());
          
             if(usuario instanceof Autor){
                  autorDAO.crearAutor(usuario);
@@ -90,6 +91,7 @@ public class UsuarioDAO {//en este caso usuario = lector...
               if((usuario = transformador.transformarAUsuario(resultado))!= null){
                    usuario =  (resultado.getInt(11)==1)?autorDAO.buscarAutor(usuario, usuario.getID()):usuario;                                                                        
                    usuario.setConfiguracionCuenta(configuracionDAO.buscarConfiguracionDeLaCuenta(usuario.getID()));//habrá que hacer algo para "contraatacar" cuando el resultado sea null, para evitar errores con las axn del usuario, imagino que se deberá tratar allá en angular, cuando ya sea nec utilizar los datos que debería tener la configuración de la cuenta...              
+                   System.out.println(usuario.getConfiguracionCuenta());
               }                            
           }catch(SQLException sqlE){
               System.out.println("Error at tried FIND the user"+ sqlE.getMessage());              
@@ -119,7 +121,7 @@ public class UsuarioDAO {//en este caso usuario = lector...
           if(usuario.getEsAutor() == 1){
               autorDAO.actualizarAutor(usuarioAutor);
           }                    
-          return configuracionDAO.actualizarDatosDeConfiguracion(usuario.getID(), usuario.getConfiguracionCuenta());
+          return configuracionDAO.actualizarDatosDeConfiguracion(usuario);
      }
        
 }//TERMINADA uwu, porque no vamos a eliminar usuario (tpco autores xD)

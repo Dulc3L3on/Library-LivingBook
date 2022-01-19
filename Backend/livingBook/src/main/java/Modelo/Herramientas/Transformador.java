@@ -5,7 +5,8 @@
  */
 package Modelo.Herramientas;
 
-import Modelo.Entidades.Configuracion;
+import Modelo.DB.DAOs.ConfiguracionDAO;
+import Modelo.Entidades.ConfiguracionCuenta;
 import Modelo.Entidades.Libro.Libro;
 import Modelo.Entidades.Libro.LibroAdquirido;
 import Modelo.Entidades.Usuario.Autor.Autor;
@@ -22,10 +23,15 @@ import java.util.logging.Logger;
  */
 public class Transformador {
     private final Herramienta herramienta;    
+    private ConfiguracionDAO configuracionDAO;
     
     public Transformador(){
-        herramienta = new Herramienta();
+        herramienta = new Herramienta();        
     }
+    
+    public void setConfiguracionDAO(){
+           this.configuracionDAO = (this.configuracionDAO!=null)?this.configuracionDAO:new ConfiguracionDAO();
+    }           
     
     private boolean verificarSiExistenResultados(ResultSet resultado){
         try {
@@ -51,11 +57,11 @@ public class Transformador {
        return null;
     }
     
-    public Configuracion transformarAConfiguracionDeCuenta(ResultSet resultado){
+    public ConfiguracionCuenta transformarAConfiguracionDeCuenta(ResultSet resultado){
         if(verificarSiExistenResultados(resultado)){//esti solo podría suceder si el usuario no seteo su foto de perfil/portada desde el inicio...
             try{
-                return new Configuracion(resultado.getInt(1), resultado.getString(2), resultado.getBlob(3).toString(), 
-                        resultado.getBlob(4).toString(), herramienta.transformarCadenaALista(resultado.getString(5), ","));//ahí miras si te da problemas usar un sqlDate, para así usar el Date de java... más que todo por la transformación y por el envío a angular...
+                return new ConfiguracionCuenta(resultado.getInt(1), resultado.getString(2), resultado.getString(3), 
+                        resultado.getString(4), herramienta.transformarCadenaALista(resultado.getString(5), ","));//ahí miras si te da problemas usar un sqlDate, para así usar el Date de java... más que todo por la transformación y por el envío a angular...
             
             }catch(SQLException sqlE){
                 System.out.println("Error al TRANSFORMAR a configuracion de cuenta"+ sqlE.getMessage());
@@ -78,13 +84,17 @@ public class Transformador {
     
     public Autor transformarAAutor(ResultSet resultado){
         if(verificarSiExistenResultados(resultado)){
+            this.setConfiguracionDAO();
+            Autor autor;
             try{
-                return new Autor(resultado.getInt(1), resultado.getString(2), resultado.getString(3), resultado.getString(4),
+                autor = new Autor(resultado.getInt(1), resultado.getString(2), resultado.getString(3), resultado.getString(4),
                                     resultado.getString(5), resultado.getString(6), resultado.getString(7),
                                     herramienta.desencriptarContraseña(resultado.getString(8)),  resultado.getString(9), 
                                     resultado.getInt(10), resultado.getInt(11), resultado.getDate(12).toString(), resultado.getInt(13), 
-                                    resultado.getDate(14).toString(), resultado.getString(15), resultado.getInt(16));//ahí miras si te da problemas usar un sqlDate, para así usar el Date de java... más que todo por la transformación y por el envío a angular...
-                                
+                                    resultado.getDate(14).toString(), resultado.getString(15), resultado.getInt(16));//ahí miras si te da problemas usar un sqlDate, para así usar el Date de java... más que todo por la transformación y por el envío a angular...                 
+                autor.setConfiguracionCuenta(configuracionDAO.buscarConfiguracionDeLaCuenta(autor.getID()));//mejor lo hice de una vez aquí porque la busqueda individual y de conjunto de autores requiere que esto sea seteado xD     
+              
+                return autor;                                
             }catch(SQLException sqlE){
                 System.out.println("Error al TRANSFORMAR a autor (JOIN)"+ sqlE.getMessage());
             }        
